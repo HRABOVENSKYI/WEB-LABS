@@ -3,3 +3,7 @@
     justify-content: space-between;
     padding: 26px 100px 0 100px;
 }
+
+.top-bar a:hover {
+	color: #606B74;
+}
