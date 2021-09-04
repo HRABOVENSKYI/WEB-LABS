@@ -1,0 +1,23 @@
+header {
+  max-width: 1000px;
+  height: 600px;
+  background-image: url("/images/background_header.svg");
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  line-height: 14px;
+  font-size: 12px;
+}
+
+header ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  list-style: none;
+  padding-inline-start: 0px;
+}
+
+header li {
+  margin-left: 40px;
+}
