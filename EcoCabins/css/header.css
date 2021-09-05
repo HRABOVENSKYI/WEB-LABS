@@ -1,7 +1,7 @@
 header {
   max-width: 1000px;
   height: 600px;
-  background-image: url("/images/background_header.svg");
+  background-image: url("../images/background_header.svg");
   display: flex;
   flex-direction: column;
   font-weight: 500;
@@ -36,34 +36,35 @@ header li {
 }
 
 .sus-tiny-houses {
-    font-size: 16px;
-    line-height: 19px;
+  font-size: 16px;
+  line-height: 19px;
 }
 
 .eco-tiny-houses {
-    font-family: Merriweather, sans-serif;
-    font-weight: 900;
-    font-size: 30px;
-    line-height: 38px;
-    padding-top: 12px;
+  font-family: Merriweather, sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 38px;
+  padding-top: 12px;
 }
 
 .movie-watch {
-    display: flex;
-    width: 250px;
-    height: 100px;
-    padding-top: 175px;
+  display: flex;
+  width: 250px;
+  height: 100px;
+  padding-top: 175px;
 }
 
-.play-button, .movie-watch > span {
-    cursor: pointer;
+.play-button,
+.movie-watch > span {
+  cursor: pointer;
 }
 
 .movie-watch > img {
-	width: 75px;
-	height: 75px;
+  width: 75px;
+  height: 75px;
 }
 
 .movie-watch > span {
-	padding-top: 30px;
+  padding-top: 30px;
 }
