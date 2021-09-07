@@ -59,3 +59,38 @@
 .row-article:not(:first-child) {
   margin-top: 37px;
 }
+
+@media (max-width: 960px) {
+  .usp-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .usp-img {
+    padding-left: 0;
+  }
+
+  .article {
+    padding-top: 50px;
+  }
+}
+
+@media (max-width: 580px) {
+  .usp{
+		height: 1150px;
+	}
+  
+  .row-article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .article-block:nth-child(2n) {
+    margin-left: 0px;
+  }
+
+  .row-article .article-block:nth-child(2){
+		margin-top: 1.5rem;
+	}
+}

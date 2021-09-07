@@ -62,3 +62,26 @@ div.img {
     align-items: flex-end;
     padding-right: 57px;
 }
+
+@media (max-width: 900px) {
+    .materials-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    div .img{
+		padding-right: 0;
+		padding-bottom: 5%;
+		padding-top: 5%;
+	}
+
+    .intro {
+		align-items: center;
+		padding-left: 0;
+	}
+
+    .intro-text {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}

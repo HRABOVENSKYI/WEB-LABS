@@ -68,3 +68,17 @@ header li {
 .movie-watch > span {
   padding-top: 30px;
 }
+
+@media (max-width: 740px) {
+  .header-info {
+    flex-direction: column;
+  }
+
+  .movie-watch {
+    padding-top: 5%;
+  }
+
+  .eco-tiny-houses {
+    padding-right: 5%;
+  }
+}

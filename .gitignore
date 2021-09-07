@@ -175,3 +175,5 @@ typings/
 
 Typescript/_
 Webpack/_
+
+.vscode
