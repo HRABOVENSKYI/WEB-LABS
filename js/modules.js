@@ -1,5 +1,9 @@
 import { cardDeck } from "./main.js";
 
+const nameInput = document.getElementById("name_input");
+const numOfVisitorsInput = document.getElementById("num_of_visitors_input");
+const numOfAnimalsInput = document.getElementById("num_of_animals_input");
+
 const cardTemplate = ({ id, zooName, numOfVisitors, numOfAnimals }) => `
 <div id="item-${id}" class="card">
 <img class="card-img-top" src="../img/zoo.jpg" alt="Card image cap" />
@@ -19,10 +23,15 @@ Animals: ${numOfAnimals}
 </div>
 `;
 
-const addItemToPage = ({ id, zooName, numOfVisitors, numOfAnimals }) => {
+const addItemToPage = ({ id, name, num_of_visitors, num_of_animals }) => {
   cardDeck.insertAdjacentHTML(
     "afterbegin",
-    cardTemplate({ id, zooName, numOfVisitors, numOfAnimals })
+    cardTemplate({
+      id,
+      zooName: name,
+      numOfVisitors: num_of_visitors,
+      numOfAnimals: num_of_animals,
+    })
   );
 };
 
@@ -36,6 +45,20 @@ const renderItemsDOM = (dataArray) => {
 const calculateTotal = (dataArray, key) => {
   const total = dataArray.reduce((acc, item) => acc + key(item), 0);
   return total;
-}
+};
 
-export { addItemToPage, renderItemsDOM, calculateTotal };
+const clearInputs = () => {
+  nameInput.value = "";
+  numOfVisitorsInput.value = "";
+  numOfAnimalsInput.value = "";
+};
+
+const getInputValues = () => {
+  return {
+    name: nameInput.value,
+    num_of_visitors: numOfVisitorsInput.value,
+    num_of_animals: numOfAnimalsInput.value,
+  };
+};
+
+export { addItemToPage, renderItemsDOM, calculateTotal, clearInputs, getInputValues };
