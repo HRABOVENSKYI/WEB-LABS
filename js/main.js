@@ -1,9 +1,11 @@
-import { getAllZoos, searchZoos, postZoo } from "./api.js";
+import { getAllZoos, searchZoos, postZoo, editZoo, getZooById } from "./api.js";
 import {
   renderItemsDOM,
   calculateTotal,
   clearInputs,
   getInputValues,
+  EDIT_BUTTON_PREFIX,
+  fillUpdateValues,
 } from "./modules.js";
 
 const cardDeck = document.getElementById("card-deck");
@@ -14,20 +16,41 @@ const countBtn = document.getElementById("count");
 const countResults = document.getElementById("count_results");
 const countTotal = document.getElementById("count_total");
 const createSubmit = document.getElementById("submit_button");
+const updateSubmit = document.getElementById("submit_update");
 const formFields = document.getElementsByClassName("create-input");
 
 let zoos = [];
 
+const onEdit = async (element) => {
+  const id = element.target.id.replace(EDIT_BUTTON_PREFIX, "");
+  let { name, num_of_visitors, num_of_animals } = await getZooById(id);
+  fillUpdateValues({
+    name,
+    numOfVisitors: num_of_visitors,
+    numOfAnimals: num_of_animals,
+  });
+
+  updateSubmit.addEventListener("click", (event) => {
+    if (includesEmptyFields()) {
+      return;
+    }
+    event.preventDefault();
+    const newZoo = getInputValues();
+    clearInputs();
+    editZoo(id, newZoo).then(refetchAllZoos);
+  })
+};
+
 const refetchAllZoos = async () => {
-  console.log("here");
   const allZoos = await getAllZoos();
   zoos = allZoos;
-  renderItemsDOM(zoos);
+  renderItemsDOM(zoos, onEdit);
 };
 
 const includesEmptyFields = () => {
-  let countOfEmptyFields = Array.from(formFields)
-    .filter((x) => x.value == "").length;
+  let countOfEmptyFields = Array.from(formFields).filter(
+    (x) => x.value == ""
+  ).length;
   return countOfEmptyFields != 0;
 };
 
@@ -44,7 +67,7 @@ createSubmit.addEventListener("click", (event) => {
 searchButton.addEventListener("click", async (event) => {
   event.preventDefault();
   const foundZoos = await searchZoos(searchInput.value);
-  renderItemsDOM(foundZoos);
+  renderItemsDOM(foundZoos, onEdit);
 });
 
 sortCheckbox.addEventListener("change", () => {
@@ -54,7 +77,7 @@ sortCheckbox.addEventListener("change", () => {
       (first, second) => first.num_of_visitors - second.num_of_visitors
     );
   }
-  renderItemsDOM(sortedZoos);
+  renderItemsDOM(sortedZoos, onEdit);
 });
 
 countBtn.addEventListener("click", () => {

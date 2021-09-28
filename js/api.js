@@ -24,6 +24,11 @@ const getAllZoos = async () => {
   return await rawResponse.json();
 };
 
+const getZooById = async (id) => {
+  const rawResponse = await baseRequest({ urlPath: `/${id}`, method: "GET" });
+  return await rawResponse.json();
+};
+
 const searchZoos = async (key) => {
   const rawResponse = await baseRequest({
     urlPath: `?searchKey=${key}`,
@@ -37,6 +42,6 @@ const postZoo = (body) => baseRequest({ method: "POST", body });
 const deleteZoo = (id) => baseRequest({ urlPath: `/${id}`, method: "DELETE" });
 
 const editZoo = (id, body) =>
-  baseRequest({ urlPath: `/${id}`, method: "DELETE", body });
+  baseRequest({ urlPath: `/${id}`, method: "PUT", body });
 
-export { getAllZoos, searchZoos, postZoo, deleteZoo, editZoo };
+export { getAllZoos, searchZoos, postZoo, deleteZoo, editZoo, getZooById };
