@@ -64,6 +64,8 @@
               <label for="name_input" class="form-label">Name</label>
               <input
                 type="text"
+                pattern="[a-z]{3,}"
+                title="Name must contain at least 3 letters"
                 class="form-control create-input"
                 id="name_input"
                 required
@@ -74,6 +76,8 @@
               <label for="num_of_visitors_input" class="form-label">Num of visitors</label>
               <input
                 type="number"
+                min="0"
+                oninput="validity.valid||(value='');"
                 class="form-control create-input"
                 id="num_of_visitors_input"
                 required
@@ -84,6 +88,8 @@
               <label for="num_of_animals_input" class="form-label">Num of animals</label>
               <input
                 type="number"
+                min="0"
+                oninput="validity.valid||(value='');" 
                 class="form-control create-input"
                 id="num_of_animals_input"
                 required
