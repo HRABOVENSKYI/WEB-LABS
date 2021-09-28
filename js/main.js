@@ -14,7 +14,7 @@ const countBtn = document.getElementById("count");
 const countResults = document.getElementById("count_results");
 const countTotal = document.getElementById("count_total");
 const createSubmit = document.getElementById("submit_button");
-const formFields = document.getElementsByClassName("form-control");
+const formFields = document.getElementsByClassName("create-input");
 
 let zoos = [];
 
@@ -26,22 +26,19 @@ const refetchAllZoos = async () => {
 };
 
 const includesEmptyFields = () => {
-  return Array.from(formFields)
-    .map((x) => x.value)
-    .includes("");
+  let countOfEmptyFields = Array.from(formFields)
+    .filter((x) => x.value == "").length;
+  return countOfEmptyFields != 0;
 };
 
 createSubmit.addEventListener("click", (event) => {
-  if (includesEmptyFields) {
-    console.log("bbb");
+  if (includesEmptyFields()) {
     return;
   }
   event.preventDefault();
   const newZoo = getInputValues();
   clearInputs();
-  console.log("1");
   postZoo(newZoo).then(refetchAllZoos);
-  console.log("aaa");
 });
 
 searchButton.addEventListener("click", async (event) => {
