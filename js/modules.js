@@ -28,7 +28,8 @@ Animals: ${numOfAnimals}
 
 const addItemToPage = (
   { id, name, num_of_visitors, num_of_animals },
-  onEdit
+  onEdit,
+  onDelete,
 ) => {
   cardDeck.insertAdjacentHTML(
     "afterbegin",
@@ -42,12 +43,15 @@ const addItemToPage = (
 
   const editButton = document.getElementById(`${EDIT_BUTTON_PREFIX}${id}`);
   editButton.addEventListener("click", onEdit);
+
+  const deleteButton = document.getElementById(`${DELETE_BUTTON_PREFIX}${id}`);
+  deleteButton.addEventListener("click", onDelete);
 };
 
-const renderItemsDOM = (dataArray, onEdit) => {
+const renderItemsDOM = (dataArray, onEdit, onDelete) => {
   cardDeck.innerHTML = "";
   for (const item of dataArray) {
-    addItemToPage(item, onEdit);
+    addItemToPage(item, onEdit, onDelete);
   }
 };
 

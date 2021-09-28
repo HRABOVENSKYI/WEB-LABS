@@ -1,4 +1,4 @@
-import { getAllZoos, searchZoos, postZoo, editZoo, getZooById } from "./api.js";
+import { getAllZoos, searchZoos, postZoo, editZoo, getZooById, deleteZoo } from "./api.js";
 import {
   renderItemsDOM,
   calculateTotal,
@@ -6,6 +6,7 @@ import {
   getInputValues,
   EDIT_BUTTON_PREFIX,
   fillUpdateValues,
+  DELETE_BUTTON_PREFIX,
 } from "./modules.js";
 
 const cardDeck = document.getElementById("card-deck");
@@ -41,10 +42,15 @@ const onEdit = async (element) => {
   })
 };
 
+const onDelete = (element) => {
+  const id = element.target.id.replace(DELETE_BUTTON_PREFIX, "");
+  deleteZoo(id).then(refetchAllZoos);
+}
+
 const refetchAllZoos = async () => {
   const allZoos = await getAllZoos();
   zoos = allZoos;
-  renderItemsDOM(zoos, onEdit);
+  renderItemsDOM(zoos, onEdit, onDelete);
 };
 
 const includesEmptyFields = () => {
@@ -67,7 +73,7 @@ createSubmit.addEventListener("click", (event) => {
 searchButton.addEventListener("click", async (event) => {
   event.preventDefault();
   const foundZoos = await searchZoos(searchInput.value);
-  renderItemsDOM(foundZoos, onEdit);
+  renderItemsDOM(foundZoos, onEdit, onDelete);
 });
 
 sortCheckbox.addEventListener("change", () => {
@@ -77,7 +83,7 @@ sortCheckbox.addEventListener("change", () => {
       (first, second) => first.num_of_visitors - second.num_of_visitors
     );
   }
-  renderItemsDOM(sortedZoos, onEdit);
+  renderItemsDOM(sortedZoos, onEdit, onDelete);
 });
 
 countBtn.addEventListener("click", () => {
