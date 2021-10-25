@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Video from "../../videos/zoo-video.mp4";
+import Video from "../../videos/zoo-video-low-quality.mp4";
 import { Button } from "../ButtonElement";
 
 import {
