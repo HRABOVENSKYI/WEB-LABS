@@ -6,6 +6,7 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
+import { animateScroll as scroll } from "react-scroll";
 
 import {
   FooterContainer,
@@ -24,6 +25,10 @@ import {
 } from "./FooterElements";
 
 const Footer = () => {
+  const toggleHome = () => {
+    scroll.scrollToTop();
+  };
+
   return (
     <FooterContainer>
       <FooterWrap>
@@ -64,7 +69,7 @@ const Footer = () => {
         </FooterLinksContainer>
         <SocialMedia>
           <SocialMediaWrap>
-            <SocialLogo to="/">ZooCorp</SocialLogo>
+            <SocialLogo to="/" onClick={toggleHome}>ZooCorp</SocialLogo>
             <WebsiteRights>
               ZooCorp Ⓒ {new Date().getFullYear()}. All rights reserved.
             </WebsiteRights>
