@@ -12,7 +12,7 @@ const Select = () => {
 
   return (
     <>
-      <label class="block mb-1 text-gray-600 font-light">Order by</label>
+      <label className="block mb-1 text-gray-600 font-light">Order by</label>
       <select
         className="border bg-white rounded px-4 py-2 outline-none focus:border-green-500"
         onChange={(e) => onOrderChange(e.target.value)}

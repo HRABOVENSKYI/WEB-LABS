@@ -14,8 +14,31 @@ const EditZoo = (route) => {
     numOfVisitors: null,
     numOfAnimals: null,
   });
+  const [errors, setErrors] = useState({});
 
   const currentZooId = route.match.params.id;
+
+  const validate = (selectedZoo) => {
+    const errors = {};
+    const regex = /^\d*[1-9]\d*$/;
+    if (!selectedZoo.zooName) {
+      errors.zooName = "Zoo name is required!";
+    }
+
+    if (!selectedZoo.numOfVisitors) {
+      errors.numOfVisitors = "Num of visitors is required!";
+    } else if (!regex.test(selectedZoo.numOfVisitors)) {
+      errors.numOfVisitors = "Invalid num of visitors";
+    }
+
+    if (!selectedZoo.numOfAnimals) {
+      errors.numOfAnimals = "Num of animals is required!";
+    } else if (!regex.test(selectedZoo.numOfAnimals)) {
+      errors.numOfAnimals = "Invalid num of animals";
+    }
+
+    return errors;
+  };
 
   useEffect(() => {
     const zooId = currentZooId;
@@ -27,8 +50,18 @@ const EditZoo = (route) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    editZoo(selectedZoo);
-    history.push("/");
+    const resultErrors = validate(selectedZoo);
+    setErrors(resultErrors);
+    if (
+      !(
+        resultErrors.zooName ||
+        resultErrors.numOfVisitors ||
+        resultErrors.numOfAnimals
+      )
+    ) {
+      editZoo(selectedZoo);
+      history.push("/");
+    }
   };
 
   const handleOnChange = (zooKey, newValue) =>
@@ -56,6 +89,7 @@ const EditZoo = (route) => {
               type="text"
               placeholder="Enter name"
             />
+            <small className="text-red-600">{errors.zooName}</small>
           </div>
           <div className="w-full  mb-5">
             <label
@@ -71,6 +105,7 @@ const EditZoo = (route) => {
               type="text"
               placeholder="Enter num of visitors"
             />
+            <small className="text-red-600">{errors.numOfVisitors}</small>
           </div>
           <div className="w-full  mb-5">
             <label
@@ -86,6 +121,7 @@ const EditZoo = (route) => {
               type="text"
               placeholder="Enter num of animals"
             />
+            <small className="text-red-600">{errors.numOfAnimals}</small>
           </div>
           <div className="flex items-center justify-between">
             <button className="block mt-5 bg-green-400 w-full hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:text-gray-600 focus:shadow-outline">
