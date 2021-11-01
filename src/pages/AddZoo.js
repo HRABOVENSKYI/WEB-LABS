@@ -1,5 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
+import CancelLink from "../components/Forms/CancelLink";
+import InputNumOfAnimals from "../components/Forms/InputNumOfAnimals";
+import InputNumOfVisitors from "../components/Forms/InputNumOfVisitors";
+import InputZooName from "../components/Forms/InputZooName";
+import SubmitButton from "../components/Forms/SubmitButton";
 
 import { GlobalContext } from "../context/GlobalState";
 
@@ -8,14 +14,18 @@ const AddZoo = () => {
 
   const { addZoo, zoos } = useContext(GlobalContext);
 
-  const [zooName, setZooName] = useState("");
-  const [numOfVisitors, setNumOfVisitors] = useState("");
-  const [numOfAnimals, setNumOfAnimals] = useState("");
+  const [zoo, setZoo] = useState({
+    id: null,
+    zooName: "",
+    numOfVisitors: "",
+    numOfAnimals: "",
+  });
+  
   const [errors, setErrors] = useState({});
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const resultErrors = validate(zooName, numOfVisitors, numOfAnimals);
+    const resultErrors = validate(zoo);
     setErrors(resultErrors);
     if (
       !(
@@ -24,20 +34,21 @@ const AddZoo = () => {
         resultErrors.numOfAnimals
       )
     ) {
-      const newZoo = {
-        id: zoos.length + 1,
-        zooName,
-        numOfVisitors,
-        numOfAnimals,
-      };
-      addZoo(newZoo);
+      zoo.id = zoos.length + 1;
+      setZoo(zoo);
+      addZoo(zoo);
       history.push("/");
     }
   };
 
-  const validate = (zooName, numOfVisitors, numOfAnimals) => {
+  const handleOnChange = (zooKey, newValue) => {
+    setZoo({ ...zoo, [zooKey]: newValue });
+  };
+
+  const validate = ({ zooName, numOfVisitors, numOfAnimals }) => {
     const errors = {};
     const regex = /^\d*[1-9]\d*$/;
+
     if (!zooName) {
       errors.zooName = "Zoo name is required!";
     }
@@ -61,62 +72,23 @@ const AddZoo = () => {
     <React.Fragment>
       <div className="w-full max-w-sm container mt-20 mx-auto">
         <form onSubmit={onSubmit}>
-          <div className="w-full mb-5">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="name"
-            >
-              Name of zoo
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:text-gray-600"
-              value={zooName}
-              onChange={(e) => setZooName(e.target.value)}
-              type="text"
-              placeholder="Enter name"
-            />
-            <small className="text-red-600">{errors.zooName}</small>
-          </div>
-          <div className="w-full mb-5">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="numOfVisitors"
-            >
-              Num of visitors
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:text-gray-600 focus:shadow-outline"
-              value={numOfVisitors}
-              onChange={(e) => setNumOfVisitors(e.target.value)}
-              type="text"
-              placeholder="Enter num of visitors"
-            />
-            <small className="text-red-600">{errors.numOfVisitors}</small>
-          </div>
-          <div className="w-full mb-5">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="numOfAnimals"
-            >
-              Num of animals
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:text-gray-600"
-              value={numOfAnimals}
-              onChange={(e) => setNumOfAnimals(e.target.value)}
-              type="text"
-              placeholder="Enter num of animals"
-            />
-            <small className="text-red-600">{errors.numOfAnimals}</small>
-          </div>
-          <div className="flex items-center justify-between">
-            <button className="mt-5 bg-green-400 w-full hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Add Zoo
-            </button>
-          </div>
-          <div className="text-center mt-4 text-gray-500">
-            <Link to="/">Cancel</Link>
-          </div>
+          <InputZooName
+            zoo={zoo}
+            handleOnChange={handleOnChange}
+            errors={errors}
+          />
+          <InputNumOfVisitors
+            zoo={zoo}
+            handleOnChange={handleOnChange}
+            errors={errors}
+          />
+          <InputNumOfAnimals
+            zoo={zoo}
+            handleOnChange={handleOnChange}
+            errors={errors}
+          />
+          <SubmitButton buttonText="Add zoo" />
+          <CancelLink />
         </form>
       </div>
     </React.Fragment>

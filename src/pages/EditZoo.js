@@ -1,5 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import CancelLink from "../components/Forms/CancelLink";
+import InputNumOfAnimals from "../components/Forms/InputNumOfAnimals";
+import InputNumOfVisitors from "../components/Forms/InputNumOfVisitors";
+import InputZooName from "../components/Forms/InputZooName";
+import SubmitButton from "../components/Forms/SubmitButton";
 
 import { GlobalContext } from "../context/GlobalState";
 
@@ -75,62 +80,23 @@ const EditZoo = (route) => {
     <React.Fragment>
       <div className="w-full max-w-sm container mt-20 mx-auto">
         <form onSubmit={onSubmit}>
-          <div className="w-full mb-5">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="name"
-            >
-              Name of zoos
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:text-gray-600 focus:shadow-outline"
-              value={selectedZoo.zooName}
-              onChange={(e) => handleOnChange("zooName", e.target.value)}
-              type="text"
-              placeholder="Enter name"
-            />
-            <small className="text-red-600">{errors.zooName}</small>
-          </div>
-          <div className="w-full  mb-5">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="numOfVisitors"
-            >
-              Num of visitors
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:text-gray-600 focus:shadow-outline"
-              value={selectedZoo.numOfVisitors}
-              onChange={(e) => handleOnChange("numOfVisitors", e.target.value)}
-              type="text"
-              placeholder="Enter num of visitors"
-            />
-            <small className="text-red-600">{errors.numOfVisitors}</small>
-          </div>
-          <div className="w-full  mb-5">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="numOfAnimals"
-            >
-              Num of animals
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:text-gray-600 focus:shadow-outline"
-              value={selectedZoo.numOfAnimals}
-              onChange={(e) => handleOnChange("numOfAnimals", e.target.value)}
-              type="text"
-              placeholder="Enter num of animals"
-            />
-            <small className="text-red-600">{errors.numOfAnimals}</small>
-          </div>
-          <div className="flex items-center justify-between">
-            <button className="block mt-5 bg-green-400 w-full hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:text-gray-600 focus:shadow-outline">
-              Edit Zoo
-            </button>
-          </div>
-          <div className="text-center mt-4 text-gray-500">
-            <Link to="/">Cancel</Link>
-          </div>
+          <InputZooName
+            zoo={selectedZoo}
+            handleOnChange={handleOnChange}
+            errors={errors}
+          />
+          <InputNumOfVisitors
+            zoo={selectedZoo}
+            handleOnChange={handleOnChange}
+            errors={errors}
+          />
+          <InputNumOfAnimals
+            zoo={selectedZoo}
+            handleOnChange={handleOnChange}
+            errors={errors}
+          />
+          <SubmitButton buttonText="Edit zoo" />
+          <CancelLink />
         </form>
       </div>
     </React.Fragment>
