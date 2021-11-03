@@ -1,13 +1,15 @@
+import { ACTIONS } from "./Actions";
+
 export default function appReducer(state, action) {
   switch (action.type) {
-    case "ADD_ZOO":
+    case ACTIONS.ADD_ZOO:
       return {
         ...state,
         zoos: [...state.zoos, action.payload],
         foundZoos: [...state.zoos, action.payload],
       };
 
-    case "EDIT_ZOO":
+    case ACTIONS.EDIT_ZOO:
       const updatedZoo = action.payload;
 
       const updatedZoos = state.zoos.map((zoo) => {
@@ -33,7 +35,7 @@ export default function appReducer(state, action) {
         foundZoos: foundZoos,
       };
 
-    case "REMOVE_ZOO":
+    case ACTIONS.REMOVE_ZOO:
       let foundZoosRemove = [];
       if (state.isSearchActive) {
         foundZoosRemove = state.foundZoos.filter(
@@ -47,7 +49,7 @@ export default function appReducer(state, action) {
         foundZoos: foundZoosRemove,
       };
 
-    case "SEARCH_ZOOS":
+    case ACTIONS.SEARCH_ZOO:
       const searchValue = action.payload.toLowerCase();
       return {
         ...state,
@@ -58,7 +60,7 @@ export default function appReducer(state, action) {
         }),
       };
 
-    case "ORDER_ZOOS":
+    case ACTIONS.ORDER_ZOOS:
       const fieldName = action.payload;
 
       let zoos = [];

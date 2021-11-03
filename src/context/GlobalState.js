@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from "react";
+import { ACTIONS } from "./Actions";
 
 import appReducer from "./AppReducer";
 
@@ -46,35 +47,35 @@ export const GlobalProvider = ({ children }) => {
 
   function addZoo(zoo) {
     dispatch({
-      type: "ADD_ZOO",
+      type: ACTIONS.ADD_ZOO,
       payload: zoo,
     });
   }
 
   function editZoo(zoo) {
     dispatch({
-      type: "EDIT_ZOO",
+      type: ACTIONS.EDIT_ZOO,
       payload: zoo,
     });
   }
 
   function removeZoo(id) {
     dispatch({
-      type: "REMOVE_ZOO",
+      type: ACTIONS.REMOVE_ZOO,
       payload: id,
     });
   }
 
   function searchZoos(zooName) {
     dispatch({
-      type: "SEARCH_ZOOS",
+      type: ACTIONS.SEARCH_ZOO,
       payload: zooName,
     });
   }
 
   function orderZoos(fieldName) {
     dispatch({
-      type: "ORDER_ZOOS",
+      type: ACTIONS.ORDER_ZOOS,
       payload: fieldName,
     });
   }
