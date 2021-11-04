@@ -17,7 +17,7 @@ const Header = () => {
           <HeaderItem label="Cart" path="/cart" />
         </div>
       </div>
-      {location.pathname === "/catalog" && <Search />}
+      {(location.pathname === "/catalog" || location.pathname === "/") && <Search />}
     </div>
   );
 };

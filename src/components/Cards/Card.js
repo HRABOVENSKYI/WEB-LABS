@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalState";
-import zoo from "../../images/nature.jpg";
+import zoo from "../../images/nature.svg";
 
 export const Card = (props) => {
   const { removeZoo } = useContext(GlobalContext);
@@ -11,7 +11,7 @@ export const Card = (props) => {
     <div className="w-full bg-gray-900 rounded-lg sahdow-lg p-12 flex flex-col justify-center items-center">
       <div className="mb-8">
         <img
-          className="object-center object-cover rounded-full h-36 w-36"
+          className="h-36 w-36"
           src={zoo}
           alt=""
         />
