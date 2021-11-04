@@ -4,7 +4,7 @@ import AddZoo from "./pages/AddZoo";
 import EditZoo from "./pages/EditZoo";
 import Catalogue from "./pages/Catalog";
 import Home from "./pages/Home";
-import Header from "./components/Header/Navbar";
+import Header from "./components/Navbar/Navbar";
 
 function App() {
   return (

@@ -4,7 +4,7 @@ import Search from "../Menu/Search";
 import Logo from "../Logo/Logo";
 import HeaderItem from "./NavbarItem";
 
-const Header = () => {
+const Navbar = () => {
   const location = useLocation();
 
   return (
@@ -22,4 +22,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

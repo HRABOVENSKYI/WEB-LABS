@@ -8,22 +8,16 @@ export const Card = (props) => {
   const zooId = props.zoo.id;
 
   return (
-    <div className="w-full bg-gray-900 rounded-lg sahdow-lg p-12 flex flex-col justify-center items-center">
+    <div className="w-full bg-gray-500 rounded-lg sahdow-lg p-12 flex flex-col justify-center items-center border-solid border-2 border-gray-800">
       <div className="mb-8">
-        <img
-          className="h-36 w-36"
-          src={zoo}
-          alt=""
-        />
+        <img className="h-36 w-36" src={zoo} alt="" />
       </div>
       <div className="text-center">
-        <p className="text-xl text-white font-bold mb-2">
-          {props.zoo.zooName}
-        </p>
-        <p className="text-base text-gray-400 f ont-normal">
+        <p className="text-xl text-white font-bold mb-2">{props.zoo.zooName}</p>
+        <p className="text-base text-gray-300 f ont-normal">
           Num of visitors: {props.zoo.numOfVisitors}
         </p>
-        <p className="text-base text-gray-400 f ont-normal">
+        <p className="text-base text-gray-300 f ont-normal">
           Num of animals: {props.zoo.numOfAnimals}
         </p>
       </div>
