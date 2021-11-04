@@ -1,16 +1,14 @@
 import React from "react";
+import Wrapper from "../components/Cards/Wrapper";
 import ZooList from "../components/Cards/ZooList";
-import Menu from "../components/Menu/Menu";
-import Title from "../components/Head/Title";
-import { Link } from "react-router-dom";
 
 const Catalogue = () => {
   return (
     <React.Fragment>
       <div className="container mx-auto">
-        <Link to="/"><Title /></Link>
-        <Menu />
-        <ZooList />
+        <Wrapper>
+          <ZooList />
+        </Wrapper>
       </div>
     </React.Fragment>
   );

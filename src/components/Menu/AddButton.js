@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const AddButton = () => {
   return (
-    <div className="flex-grow">
+    <div>
       <Link to="/add">
         <button className="bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-8 rounded inline-flex items-center">
           <svg

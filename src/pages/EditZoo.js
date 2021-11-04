@@ -65,7 +65,7 @@ const EditZoo = (route) => {
       )
     ) {
       editZoo(selectedZoo);
-      history.push("/catalogue");
+      history.push("/");
     }
   };
 

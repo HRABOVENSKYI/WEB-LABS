@@ -37,7 +37,7 @@ const AddZoo = () => {
       zoo.id = zoos.length + 1;
       setZoo(zoo);
       addZoo(zoo);
-      history.push("/catalogue");
+      history.push("/");
     }
   };
 

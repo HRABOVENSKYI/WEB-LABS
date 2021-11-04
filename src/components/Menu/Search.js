@@ -12,7 +12,6 @@ const Search = () => {
 
   return (
     <>
-      <label className="block mb-1 text-gray-600 font-light">Find zoo</label>
       <div className="flex items-center">
         <svg
           className="w-4 h-4 fill-current text-gray-500 ml-4 z-10"

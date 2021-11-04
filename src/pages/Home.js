@@ -1,14 +1,23 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import Title from '../components/Head/Title';
+import React from "react";
+import Wrapper from "../components/Cards/Wrapper";
+import ZooList from "../components/Cards/ZooList";
+import AddButton from "../components/Menu/AddButton";
+import ListingTitle from "../components/Menu/ListingTitle";
 
 const Home = () => {
-    return (
-        <div>
-            <h3 className="text-center text-3xl text-base leading-8 text-black font-bold tracking-wide uppercase py-6">Home page</h3>
-            <Link to="/catalogue"><h3 className="no-underline hover:underline text-center text-blue-500 text-2xl">Catalogue</h3></Link>
-        </div>
-    )
-}
+  return (
+    <React.Fragment>
+      <div className="container mx-auto">
+        <Wrapper>
+          <div className="mb-6 flex justify-between">
+            <ListingTitle />
+            <AddButton />
+          </div>
+          <ZooList />
+        </Wrapper>
+      </div>
+    </React.Fragment>
+  );
+};
 
 export default Home;
