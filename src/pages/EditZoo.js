@@ -19,6 +19,7 @@ const EditZoo = (route) => {
     numOfVisitors: null,
     numOfAnimals: null,
   });
+  
   const [errors, setErrors] = useState({});
 
   const currentZooId = route.match.params.id;

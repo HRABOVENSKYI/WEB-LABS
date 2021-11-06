@@ -1,15 +1,13 @@
 import React from "react";
 import Wrapper from "../components/Cards/Wrapper";
-import ZooList from "../components/Cards/ZooList";
+import CatalogList from "../components/Catalog/CatalogList";
 
 const Catalogue = () => {
   return (
     <React.Fragment>
-      <div className="container mx-auto">
-        <Wrapper>
-          <ZooList />
-        </Wrapper>
-      </div>
+      <Wrapper>
+        <CatalogList />
+      </Wrapper>
     </React.Fragment>
   );
 };

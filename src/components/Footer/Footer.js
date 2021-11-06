@@ -11,7 +11,7 @@ const Footer = () => {
     <div className="flex justify-between items-center py-4 px-12 border-solid border-t-2 border-gray-300">
       <div>
         <p className="font-bold">Branding stuff</p>
-        <p>© All rights reserved</p>
+        <p>2021 IoT © Copyright all rights reserved</p>
       </div>
       <div>
         <Logo />
