@@ -5,6 +5,7 @@ import EditZoo from "./pages/EditZoo";
 import Catalogue from "./pages/Catalog";
 import Home from "./pages/Home";
 import Header from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/add" component={AddZoo} exact />
         <Route path="/edit/:id" component={EditZoo} exact />
       </Switch>
+      <Footer />
     </GlobalProvider>
   );
 }
