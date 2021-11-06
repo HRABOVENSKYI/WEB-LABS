@@ -3,10 +3,10 @@ import React from "react";
 const Button = (props) => {
   return (
     <button
-      className="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-2 rounded inline-flex items-center"
+      className="bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-4 rounded inline-flex items-center"
       onClick={props.onClick}
     >
-      <span className="pl-2">{props.label}</span>
+      {props.label}
     </button>
   );
 };
