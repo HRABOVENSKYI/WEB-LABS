@@ -70,7 +70,7 @@ const AddZoo = () => {
 
   return (
     <React.Fragment>
-      <div className="w-full max-w-sm container mt-20 mx-auto">
+      <div className="w-full max-w-sm container my-20 mx-auto">
         <form onSubmit={onSubmit}>
           <InputZooName
             zoo={zoo}
