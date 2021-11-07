@@ -6,7 +6,7 @@ const CatalogHeader = () => {
     <div className="flex">
       <CatalogFilter
         name="Num of visitors"
-        propertyName={"numOfVisitors"}
+        propertyName="numOfVisitors"
         options={[
           { name: "asc", value: "asc" },
           { name: "desc", value: "desc" },
@@ -14,7 +14,7 @@ const CatalogHeader = () => {
       />
       <CatalogFilter
         name="Num of animals"
-        propertyName={"numOfAnimals"}
+        propertyName="numOfAnimals"
         options={[
           { name: "asc", value: "asc" },
           { name: "desc", value: "desc" },
@@ -22,7 +22,7 @@ const CatalogHeader = () => {
       />
       <CatalogFilter
         name="Entrance fee"
-        propertyName={"entranceFee"}
+        propertyName="entranceFee"
         options={[
           { name: "asc", value: "asc" },
           { name: "desc", value: "desc" },
