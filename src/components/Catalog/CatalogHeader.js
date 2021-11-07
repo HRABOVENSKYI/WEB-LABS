@@ -20,6 +20,14 @@ const CatalogHeader = () => {
           { name: "desc", value: "desc" },
         ]}
       />
+      <CatalogFilter
+        name="Entrance fee"
+        propertyName={"entranceFee"}
+        options={[
+          { name: "asc", value: "asc" },
+          { name: "desc", value: "desc" },
+        ]}
+      />
     </div>
   );
 };

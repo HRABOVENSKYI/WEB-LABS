@@ -10,8 +10,11 @@ const Heading = (props) => {
         <p className="text-lg text-black font-normal my-4">
           Num of visitors: {props.zoo.numOfVisitors}
         </p>
-        <p className="text-lg text-balck font-normal">
+        <p className="text-lg text-balck font-normal my-4">
           Num of animals: {props.zoo.numOfAnimals}
+        </p>
+        <p className="text-lg text-balck font-normal my-4">
+          Entrance fee: <b>{props.zoo.entranceFee}$</b>
         </p>
       </div>
     </div>

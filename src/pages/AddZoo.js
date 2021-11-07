@@ -2,9 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import CancelLink from "../components/Forms/CancelLink";
-import InputNumOfAnimals from "../components/Forms/InputNumOfAnimals";
-import InputNumOfVisitors from "../components/Forms/InputNumOfVisitors";
-import InputZooName from "../components/Forms/InputZooName";
+import InputField from "../components/Forms/InputField";
 import SubmitButton from "../components/Forms/SubmitButton";
 
 import { GlobalContext } from "../context/GlobalState";
@@ -31,7 +29,8 @@ const AddZoo = () => {
       !(
         resultErrors.zooName ||
         resultErrors.numOfVisitors ||
-        resultErrors.numOfAnimals
+        resultErrors.numOfAnimals ||
+        resultErrors.entranceFee
       )
     ) {
       zoo.id = zoos.length + 1;
@@ -45,15 +44,19 @@ const AddZoo = () => {
     setZoo({ ...zoo, [zooKey]: newValue });
   };
 
-  const validate = ({ zooName, numOfVisitors, numOfAnimals }) => {
+  const validate = ({ zooName, numOfVisitors, numOfAnimals, entranceFee }) => {
+    console.log("HEREEEE")
     const errors = {};
     const regex = /^\d*[1-9]\d*$/;
 
     if (!zooName) {
+      console.log(zooName)
+      console.log(errors)
       errors.zooName = "Zoo name is required!";
     }
 
     if (!numOfVisitors) {
+      console.log(numOfVisitors)
       errors.numOfVisitors = "Num of visitors is required!";
     } else if (!regex.test(numOfVisitors)) {
       errors.numOfVisitors = "Invalid num of visitors";
@@ -65,6 +68,12 @@ const AddZoo = () => {
       errors.numOfAnimals = "Invalid num of animals";
     }
 
+    if (!entranceFee) {
+      errors.entranceFee = "Entrance fee is required!";
+    } else if (!regex.test(entranceFee)) {
+      errors.entranceFee = "Invalid entrance fee";
+    }
+
     return errors;
   };
 
@@ -72,20 +81,37 @@ const AddZoo = () => {
     <React.Fragment>
       <div className="w-full max-w-sm container my-20 mx-auto">
         <form onSubmit={onSubmit}>
-          <InputZooName
+          <InputField
             zoo={zoo}
             handleOnChange={handleOnChange}
             errors={errors}
+            inputFieldName="zooName"
+            inputFiledTitle="Zoo name"
+            inputFiledPlaceholder="Enter zoo name"
           />
-          <InputNumOfVisitors
+          <InputField
             zoo={zoo}
             handleOnChange={handleOnChange}
             errors={errors}
+            inputFieldName="numOfVisitors"
+            inputFiledTitle="Num of visitors"
+            inputFiledPlaceholder="Enter num of visitors"
           />
-          <InputNumOfAnimals
+          <InputField
             zoo={zoo}
             handleOnChange={handleOnChange}
             errors={errors}
+            inputFieldName="numOfAnimals"
+            inputFiledTitle="Num of animals"
+            inputFiledPlaceholder="Enter num of animals"
+          />
+          <InputField
+            zoo={zoo}
+            handleOnChange={handleOnChange}
+            errors={errors}
+            inputFieldName="entranceFee"
+            inputFiledTitle="Entrance fee"
+            inputFiledPlaceholder="Enter entrance fee"
           />
           <SubmitButton buttonText="Add zoo" />
           <CancelLink />

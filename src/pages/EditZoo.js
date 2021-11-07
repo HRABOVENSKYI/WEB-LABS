@@ -1,9 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import CancelLink from "../components/Forms/CancelLink";
-import InputNumOfAnimals from "../components/Forms/InputNumOfAnimals";
-import InputNumOfVisitors from "../components/Forms/InputNumOfVisitors";
-import InputZooName from "../components/Forms/InputZooName";
+import InputField from "../components/Forms/InputField";
 import SubmitButton from "../components/Forms/SubmitButton";
 
 import { GlobalContext } from "../context/GlobalState";
@@ -13,13 +11,8 @@ const EditZoo = (route) => {
 
   const { zoos, editZoo } = useContext(GlobalContext);
 
-  const [selectedZoo, setSelectedZoo] = useState({
-    id: null,
-    zooName: null,
-    numOfVisitors: null,
-    numOfAnimals: null,
-  });
-  
+  const [selectedZoo, setSelectedZoo] = useState({});
+
   const [errors, setErrors] = useState({});
 
   const currentZooId = route.match.params.id;
@@ -43,6 +36,12 @@ const EditZoo = (route) => {
       errors.numOfAnimals = "Invalid num of animals";
     }
 
+    if (!selectedZoo.entranceFee) {
+      errors.entranceFee = "Entrance fee is required!";
+    } else if (!regex.test(selectedZoo.entranceFee)) {
+      errors.entranceFee = "Invalid entrance fee";
+    }
+
     return errors;
   };
 
@@ -62,7 +61,8 @@ const EditZoo = (route) => {
       !(
         resultErrors.zooName ||
         resultErrors.numOfVisitors ||
-        resultErrors.numOfAnimals
+        resultErrors.numOfAnimals ||
+        resultErrors.entranceFee
       )
     ) {
       editZoo(selectedZoo);
@@ -81,20 +81,37 @@ const EditZoo = (route) => {
     <React.Fragment>
       <div className="w-full max-w-sm container my-20 mx-auto">
         <form onSubmit={onSubmit}>
-          <InputZooName
+        <InputField
             zoo={selectedZoo}
             handleOnChange={handleOnChange}
             errors={errors}
+            inputFieldName="zooName"
+            inputFiledTitle="Zoo name"
+            inputFiledPlaceholder="Enter zoo name"
           />
-          <InputNumOfVisitors
+          <InputField
             zoo={selectedZoo}
             handleOnChange={handleOnChange}
             errors={errors}
+            inputFieldName="numOfVisitors"
+            inputFiledTitle="Num of visitors"
+            inputFiledPlaceholder="Enter num of visitors"
           />
-          <InputNumOfAnimals
+          <InputField
             zoo={selectedZoo}
             handleOnChange={handleOnChange}
             errors={errors}
+            inputFieldName="numOfAnimals"
+            inputFiledTitle="Num of animals"
+            inputFiledPlaceholder="Enter num of animals"
+          />
+          <InputField
+            zoo={selectedZoo}
+            handleOnChange={handleOnChange}
+            errors={errors}
+            inputFieldName="entranceFee"
+            inputFiledTitle="Entrance fee"
+            inputFiledPlaceholder="Enter entrance fee"
           />
           <SubmitButton buttonText="Edit zoo" />
           <CancelLink />

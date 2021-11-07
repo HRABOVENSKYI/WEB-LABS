@@ -20,6 +20,9 @@ export const Card = (props) => {
         <p className="text-base text-gray-300 f ont-normal">
           Num of animals: {props.zoo.numOfAnimals}
         </p>
+        <p className="text-base text-gray-300 f ont-normal">
+          Entrance fee: <b>{props.zoo.entranceFee}$</b>
+        </p>
       </div>
       <div className="flex-auto text-right pt-6">
         <Link to={`/edit/${zooId}`} title="Edit Zoo">
