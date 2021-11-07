@@ -12,12 +12,7 @@ const AddZoo = () => {
 
   const { addZoo, zoos } = useContext(GlobalContext);
 
-  const [zoo, setZoo] = useState({
-    id: null,
-    zooName: "",
-    numOfVisitors: "",
-    numOfAnimals: "",
-  });
+  const [zoo, setZoo] = useState({});
   
   const [errors, setErrors] = useState({});
 
