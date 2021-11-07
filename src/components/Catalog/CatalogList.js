@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import FILTER_KEYS from "../../context/FilterKeys";
 import { GlobalContext } from "../../context/GlobalState";
-import { CatalogCard } from "../Catalog/CatalogCard";
+import CatalogCard from "../Catalog/CatalogCard";
 import NoDataText from "../NoDataText/NoDataText";
 import CatalogHeader from "./CatalogHeader";
 

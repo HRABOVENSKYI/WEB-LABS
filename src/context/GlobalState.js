@@ -43,7 +43,7 @@ const initialState = {
     },
   ],
   filters: {
-    [FILTER_KEYS.ORDER_BY]: { property: "id", direction: "asc" },
+    [FILTER_KEYS.ORDER_BY]: { property: "id", order: "asc" },
     [FILTER_KEYS.SEARCH_BY]: { value: "" },
   },
 };

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import FILTER_KEYS from "../../context/FilterKeys";
 import { GlobalContext } from "../../context/GlobalState";
 
 const Search = () => {
@@ -6,7 +7,7 @@ const Search = () => {
 
   const onSearchChange = (value) => {
     const searchText = value.trim().replace(/" "/g, "").toLowerCase();
-    addFilter("searchBy", { value: searchText });
+    addFilter(FILTER_KEYS.SEARCH_BY, { value: searchText });
   };
 
   return (

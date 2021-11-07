@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import FILTER_KEYS from "../../context/FilterKeys";
 import { GlobalContext } from "../../context/GlobalState";
 import Button from "../Button/Button";
-import { Card } from "./Card";
+import Card from "./Card";
 
 const ZooList = () => {
   const { zoos, filters } = useContext(GlobalContext);

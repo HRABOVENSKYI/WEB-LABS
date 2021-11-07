@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalState";
 import zoo from "../../images/nature.svg";
 
-export const Card = (props) => {
+const Card = (props) => {
   const { removeZoo } = useContext(GlobalContext);
   const zooId = props.zoo.id;
 
@@ -71,3 +71,5 @@ export const Card = (props) => {
     </div>
   );
 };
+
+export default Card;

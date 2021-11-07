@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import zoo from "../../images/nature.svg";
 
-export const CatalogCard = (props) => {
+const CatalogCard = (props) => {
   const zooId = props.zoo.id;
 
   return (
@@ -32,3 +32,5 @@ export const CatalogCard = (props) => {
     </div>
   );
 };
+
+export default CatalogCard;
