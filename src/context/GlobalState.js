@@ -36,8 +36,10 @@ const initialState = {
       numOfAnimals: parseInt("88"),
     },
   ],
-  isSearchActive: false,
-  foundZoos: [],
+  filters: {
+    "orderBy": { property: "id", direction: "asc" },
+    "searchBy": { value: "" },
+  },
 };
 
 export const GlobalContext = createContext(initialState);
@@ -66,17 +68,11 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
-  function searchZoos(zooName) {
+  function addFilter(key, value) {
+    const filter = { [key]: value }
     dispatch({
-      type: ACTIONS.SEARCH_ZOO,
-      payload: zooName,
-    });
-  }
-
-  function orderZoos(fieldName) {
-    dispatch({
-      type: ACTIONS.ORDER_ZOOS,
-      payload: fieldName,
+      type: ACTIONS.FILTER_ZOOS,
+      payload: filter,
     });
   }
 
@@ -84,13 +80,11 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         zoos: state.zoos,
-        isSearchActive: state.isSearchActive,
-        foundZoos: state.foundZoos,
+        filters: state.filters,
         addZoo,
         editZoo,
         removeZoo,
-        searchZoos,
-        orderZoos,
+        addFilter,
       }}
     >
       {children}

@@ -1,24 +1,40 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 import { CatalogCard } from "../Catalog/CatalogCard";
+import NoDataText from "../NoDataText/NoDataText";
+import CatalogHeader from "./CatalogHeader";
 
 const CatalogList = () => {
-  const { zoos, isSearchActive, foundZoos } = useContext(GlobalContext);
+  const { zoos, filters } = useContext(GlobalContext);
 
-  const currentZoos = isSearchActive ? foundZoos : zoos;
+  const filteredZoos = zoos.filter((zoo) => zoo.zooName.toLowerCase().includes(filters["searchBy"].value));
 
   return (
     <React.Fragment>
-      {currentZoos.length > 0 ? (
+      {filteredZoos.length > 0 ? (
         <React.Fragment>
+          <CatalogHeader />
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {currentZoos.map((zoo) => (
-              <CatalogCard key={zoo.id} zoo={zoo} />
-            ))}
+            {filteredZoos
+              .sort((first, second) => {
+                const isAsc = filters["orderBy"].order === "asc";
+
+                if (
+                  first[filters["orderBy"].property] >=
+                  second[filters["orderBy"].property]
+                ) {
+                  return isAsc ? 1 : -1;
+                } else {
+                  return isAsc ? -1 : 1;
+                }
+              })
+              .map((zoo) => (
+                <CatalogCard key={zoo.id} zoo={zoo} />
+              ))}
           </div>
         </React.Fragment>
       ) : (
-        <p className="text-center bg-gray-100 text-gray-500 py-5">No Data</p>
+        <NoDataText />
       )}
     </React.Fragment>
   );

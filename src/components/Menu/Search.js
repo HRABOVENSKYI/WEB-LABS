@@ -2,12 +2,11 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 
 const Search = () => {
-  const { searchZoos } = useContext(GlobalContext);
+  const { addFilter } = useContext(GlobalContext);
 
   const onSearchChange = (value) => {
-    console.log("ON SERACH CHANGE");
-    const searchText = value.trim().replace(/" "/g, "");
-    searchZoos(searchText);
+    const searchText = value.trim().replace(/" "/g, "").toLowerCase();
+    addFilter("searchBy", { value: searchText });
   };
 
   return (
