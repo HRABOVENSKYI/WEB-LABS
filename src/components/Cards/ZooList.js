@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import FILTER_KEYS from "../../context/FilterKeys";
 import { GlobalContext } from "../../context/GlobalState";
 import Button from "../Button/Button";
 import { Card } from "./Card";
@@ -8,7 +9,7 @@ const ZooList = () => {
 
   const [showMore, setShowMore] = useState(false);
 
-  const filteredZoos = zoos.filter((zoo) => zoo.zooName.toLowerCase().includes(filters["searchBy"].value));
+  const filteredZoos = zoos.filter((zoo) => zoo.zooName.toLowerCase().includes(filters[FILTER_KEYS.SEARCH_BY].value));
 
   return (
     <React.Fragment>

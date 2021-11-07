@@ -1,5 +1,6 @@
 import React, { createContext, useReducer } from "react";
-import { ACTIONS } from "./Actions";
+import ACTIONS from "./Actions";
+import FILTER_KEYS from "./FilterKeys";
 
 import appReducer from "./AppReducer";
 
@@ -42,8 +43,8 @@ const initialState = {
     },
   ],
   filters: {
-    "orderBy": { property: "id", direction: "asc" },
-    "searchBy": { value: "" },
+    [FILTER_KEYS.ORDER_BY]: { property: "id", direction: "asc" },
+    [FILTER_KEYS.SEARCH_BY]: { value: "" },
   },
 };
 

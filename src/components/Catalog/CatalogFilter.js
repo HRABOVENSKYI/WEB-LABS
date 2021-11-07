@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
+import FILTER_KEYS from "../../context/FilterKeys";
 import { GlobalContext } from "../../context/GlobalState";
 
 const CatalogFilter = (props) => {
   const { addFilter } = useContext(GlobalContext);
 
   const onChangeHandler = (event) => {
-    addFilter("orderBy", {
+    addFilter(FILTER_KEYS.ORDER_BY, {
       property: event.target.id,
       order: event.target.value,
     });

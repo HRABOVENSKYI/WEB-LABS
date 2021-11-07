@@ -1,4 +1,4 @@
-import { ACTIONS } from "./Actions";
+import ACTIONS from "./Actions";
 
 export default function appReducer(state, action) {
   switch (action.type) {
