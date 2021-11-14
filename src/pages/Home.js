@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <React.Fragment>
         <Wrapper>
-          <Heading zoo={firstZoo} />
+          {zoos.length > 0 ? <Heading zoo={firstZoo} /> : ""}
           <div className="my-6 flex justify-between">
             <ListingTitle />
             <AddButton />
