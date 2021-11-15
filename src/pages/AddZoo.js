@@ -12,8 +12,13 @@ const AddZoo = () => {
 
   const { addZoo, zoos } = useContext(GlobalContext);
 
-  const [zoo, setZoo] = useState({});
-  
+  const [zoo, setZoo] = useState({
+    zooName: "",
+    numOfVisitors: "",
+    numOfAnimals: "",
+    entranceFee: "",
+  });
+
   const [errors, setErrors] = useState({});
 
   const onSubmit = (e) => {
@@ -40,18 +45,14 @@ const AddZoo = () => {
   };
 
   const validate = ({ zooName, numOfVisitors, numOfAnimals, entranceFee }) => {
-    console.log("HEREEEE")
     const errors = {};
     const regex = /^\d*[1-9]\d*$/;
 
     if (!zooName) {
-      console.log(zooName)
-      console.log(errors)
       errors.zooName = "Zoo name is required!";
     }
 
     if (!numOfVisitors) {
-      console.log(numOfVisitors)
       errors.numOfVisitors = "Num of visitors is required!";
     } else if (!regex.test(numOfVisitors)) {
       errors.numOfVisitors = "Invalid num of visitors";

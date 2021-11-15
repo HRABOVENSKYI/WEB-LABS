@@ -1,11 +1,15 @@
-import React, { createContext, useReducer } from "react";
-import ACTIONS from "./Actions";
+import React, { createContext, useState } from "react";
 import FILTER_KEYS from "./FilterKeys";
 
-import appReducer from "./AppReducer";
+export const GlobalContext = createContext({});
 
-const initialState = {
-  zoos: [
+export const GlobalProvider = ({ children }) => {
+  const [filters, setFilters] = useState({
+    [FILTER_KEYS.ORDER_BY]: { property: "id", order: "asc" },
+    [FILTER_KEYS.SEARCH_BY]: { value: "" },
+  });
+
+  const [zoos, setZoos] = useState([
     {
       id: 1,
       zooName: "Magic Zoo",
@@ -41,52 +45,37 @@ const initialState = {
       numOfAnimals: parseInt("88"),
       entranceFee: parseInt("33"),
     },
-  ],
-  filters: {
-    [FILTER_KEYS.ORDER_BY]: { property: "id", order: "asc" },
-    [FILTER_KEYS.SEARCH_BY]: { value: "" },
-  },
-};
-
-export const GlobalContext = createContext(initialState);
-
-export const GlobalProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(appReducer, initialState);
+  ]);
 
   function addZoo(zoo) {
-    dispatch({
-      type: ACTIONS.ADD_ZOO,
-      payload: zoo,
-    });
+    setZoos([...zoos, zoo]);
   }
 
   function editZoo(zoo) {
-    dispatch({
-      type: ACTIONS.EDIT_ZOO,
-      payload: zoo,
+    const updatedZoos = zoos.map((z) => {
+      if (z.id === zoo.id) {
+        return zoo;
+      }
+      return z;
     });
+    setZoos(updatedZoos);
   }
 
   function removeZoo(id) {
-    dispatch({
-      type: ACTIONS.REMOVE_ZOO,
-      payload: id,
-    });
+    const updatedZoos = zoos.filter((zoo) => zoo.id !== id);
+    setZoos(updatedZoos);
   }
 
   function addFilter(key, value) {
-    const filter = { [key]: value }
-    dispatch({
-      type: ACTIONS.FILTER_ZOOS,
-      payload: filter,
-    });
+    const newFilter = { [key]: value };
+    setFilters({ ...filters, ...newFilter });
   }
 
   return (
     <GlobalContext.Provider
       value={{
-        zoos: state.zoos,
-        filters: state.filters,
+        zoos: zoos,
+        filters: filters,
         addZoo,
         editZoo,
         removeZoo,

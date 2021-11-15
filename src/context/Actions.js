@@ -1,8 +1,0 @@
-const ACTIONS = {
-  ADD_ZOO: "ADD_ZOO",
-  EDIT_ZOO: "EDIT_ZOO",
-  REMOVE_ZOO: "REMOVE_ZOO",
-  FILTER_ZOOS: "FILTER_ZOOS",
-};
-
-export default ACTIONS;
