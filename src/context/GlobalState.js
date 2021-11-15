@@ -1,4 +1,5 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import zoosApi from "../api/api";
 import FILTER_KEYS from "./FilterKeys";
 
 export const GlobalContext = createContext({});
@@ -9,43 +10,14 @@ export const GlobalProvider = ({ children }) => {
     [FILTER_KEYS.SEARCH_BY]: { value: "" },
   });
 
-  const [zoos, setZoos] = useState([
-    {
-      id: 1,
-      zooName: "Magic Zoo",
-      numOfVisitors: parseInt("33"),
-      numOfAnimals: parseInt("12"),
-      entranceFee: parseInt("13"),
-    },
-    {
-      id: 2,
-      zooName: "Amaizing Elephants",
-      numOfVisitors: parseInt("21"),
-      numOfAnimals: parseInt("4"),
-      entranceFee: parseInt("133"),
-    },
-    {
-      id: 3,
-      zooName: "Happy Animals",
-      numOfVisitors: parseInt("9"),
-      numOfAnimals: parseInt("55"),
-      entranceFee: parseInt("15"),
-    },
-    {
-      id: 4,
-      zooName: "Reptile World",
-      numOfVisitors: parseInt("45"),
-      numOfAnimals: parseInt("56"),
-      entranceFee: parseInt("15"),
-    },
-    {
-      id: 5,
-      zooName: "Zoo of Extremes",
-      numOfVisitors: parseInt("11"),
-      numOfAnimals: parseInt("88"),
-      entranceFee: parseInt("33"),
-    },
-  ]);
+  const [zoos, setZoos] = useState([]);
+
+  useEffect(() => {
+    zoosApi
+      .getZoos()
+      .then(({ data }) => setZoos(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   function addZoo(zoo) {
     setZoos([...zoos, zoo]);
@@ -74,8 +46,8 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        zoos: zoos,
-        filters: filters,
+        zoos,
+        filters,
         addZoo,
         editZoo,
         removeZoo,
