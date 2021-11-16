@@ -1,17 +1,20 @@
 import axios from "axios";
 import qs from "qs";
 
+const BASE_URL = "http://localhost:8080";
+
 const baseAxios = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: BASE_URL,
   timeout: 5000,
 });
 
 baseAxios.interceptors.request.use(
   (config) => {
     console.log(
-      `${config.method.toUpperCase()} request sent to ${
-        config.url
-      } at ${new Date().toLocaleString()}`
+      `Method: ${config.method.toUpperCase()}\n` +
+        `URL: ${BASE_URL}${config.url}\n` +
+        `Params: ${JSON.stringify(config.params)}\n` +
+        `Time: ${new Date().toLocaleString()}`
     );
     return config;
   },

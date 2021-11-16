@@ -11,12 +11,15 @@ const CatalogCard = (props) => {
         <img className="h-36 w-36" src={zoo} alt="" />
       </div>
       <div className="text-center">
-        <p className="text-xl text-white font-bold mb-2">{props.zoo.zooName}</p>
+        <p className="text-xl text-white font-bold mb-2">{props.zoo.name}</p>
         <p className="text-base text-gray-300 f ont-normal">
           Num of visitors: {props.zoo.numOfVisitors}
         </p>
         <p className="text-base text-gray-300 f ont-normal">
           Num of animals: {props.zoo.numOfAnimals}
+        </p>
+        <p className="text-base text-gray-300 f ont-normal">
+          Type: {props.zoo.type}
         </p>
         <p className="text-base text-gray-300 f ont-normal">
           Entrance fee: <b>{props.zoo.entranceFee}$</b>

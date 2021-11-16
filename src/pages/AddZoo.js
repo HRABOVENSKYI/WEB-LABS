@@ -13,9 +13,10 @@ const AddZoo = () => {
   const { addZoo, zoos } = useContext(GlobalContext);
 
   const [zoo, setZoo] = useState({
-    zooName: "",
+    name: "",
     numOfVisitors: "",
     numOfAnimals: "",
+    type: "",
     entranceFee: "",
   });
 
@@ -27,9 +28,10 @@ const AddZoo = () => {
     setErrors(resultErrors);
     if (
       !(
-        resultErrors.zooName ||
+        resultErrors.name ||
         resultErrors.numOfVisitors ||
         resultErrors.numOfAnimals ||
+        resultErrors.type ||
         resultErrors.entranceFee
       )
     ) {
@@ -44,12 +46,12 @@ const AddZoo = () => {
     setZoo({ ...zoo, [zooKey]: newValue });
   };
 
-  const validate = ({ zooName, numOfVisitors, numOfAnimals, entranceFee }) => {
+  const validate = ({ name, numOfVisitors, numOfAnimals, type, entranceFee }) => {
     const errors = {};
     const regex = /^\d*[1-9]\d*$/;
 
-    if (!zooName) {
-      errors.zooName = "Zoo name is required!";
+    if (!name) {
+      errors.name = "Zoo name is required!";
     }
 
     if (!numOfVisitors) {
@@ -62,6 +64,10 @@ const AddZoo = () => {
       errors.numOfAnimals = "Num of animals is required!";
     } else if (!regex.test(numOfAnimals)) {
       errors.numOfAnimals = "Invalid num of animals";
+    }
+
+    if (!type) {
+      errors.type = "Type is required!";
     }
 
     if (!entranceFee) {
@@ -81,7 +87,7 @@ const AddZoo = () => {
             zoo={zoo}
             handleOnChange={handleOnChange}
             errors={errors}
-            inputFieldName="zooName"
+            inputFieldName="name"
             inputFiledTitle="Zoo name"
             inputFiledPlaceholder="Enter zoo name"
           />
@@ -100,6 +106,14 @@ const AddZoo = () => {
             inputFieldName="numOfAnimals"
             inputFiledTitle="Num of animals"
             inputFiledPlaceholder="Enter num of animals"
+          />
+          <InputField
+            zoo={zoo}
+            handleOnChange={handleOnChange}
+            errors={errors}
+            inputFieldName="type"
+            inputFiledTitle="Type"
+            inputFiledPlaceholder="Enter zoo type"
           />
           <InputField
             zoo={zoo}

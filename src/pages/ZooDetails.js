@@ -12,9 +12,11 @@ const ZooDetails = (route) => {
 
   const [selectedZoo, setSelectedZoo] = useState({
     id: null,
-    zooName: null,
+    name: null,
     numOfVisitors: null,
     numOfAnimals: null,
+    type: null,
+    entranceFee: null,
   });
 
   const currentZooId = route.match.params.id;
@@ -32,8 +34,8 @@ const ZooDetails = (route) => {
       <Wrapper>
         <Heading zoo={selectedZoo} />
         <div className="flex justify-end py-8">
-            <Button label='Go back' onClick={() => history.push("/catalog")} />
-            <Button label='Add to cart' />
+          <Button label="Go back" onClick={() => history.push("/catalog")} />
+          <Button label="Add to cart" />
         </div>
       </Wrapper>
     </div>

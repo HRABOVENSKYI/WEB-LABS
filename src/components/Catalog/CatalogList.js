@@ -9,7 +9,7 @@ const CatalogList = () => {
   const { zoos, filters } = useContext(GlobalContext);
 
   const filteredZoos = zoos.filter((zoo) =>
-    zoo.zooName.toLowerCase().includes(filters[FILTER_KEYS.SEARCH_BY].value)
+    zoo.name.toLowerCase().includes(filters[FILTER_KEYS.SEARCH_BY].value)
   );
 
   return (

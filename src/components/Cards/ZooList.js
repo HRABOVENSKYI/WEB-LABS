@@ -9,7 +9,7 @@ const ZooList = () => {
 
   const [showMore, setShowMore] = useState(false);
 
-  const filteredZoos = zoos.filter((zoo) => zoo.zooName.toLowerCase().includes(filters[FILTER_KEYS.SEARCH_BY].value));
+  const filteredZoos = zoos.filter((zoo) => zoo.name.toLowerCase().includes(filters[FILTER_KEYS.SEARCH_BY].value));
 
   return (
     <React.Fragment>

@@ -20,8 +20,9 @@ const EditZoo = (route) => {
   const validate = (selectedZoo) => {
     const errors = {};
     const regex = /^\d*[1-9]\d*$/;
-    if (!selectedZoo.zooName) {
-      errors.zooName = "Zoo name is required!";
+
+    if (!selectedZoo.name) {
+      errors.name = "Zoo name is required!";
     }
 
     if (!selectedZoo.numOfVisitors) {
@@ -34,6 +35,10 @@ const EditZoo = (route) => {
       errors.numOfAnimals = "Num of animals is required!";
     } else if (!regex.test(selectedZoo.numOfAnimals)) {
       errors.numOfAnimals = "Invalid num of animals";
+    }
+
+    if (!selectedZoo.type) {
+      errors.type = "Type is required!";
     }
 
     if (!selectedZoo.entranceFee) {
@@ -59,9 +64,10 @@ const EditZoo = (route) => {
     setErrors(resultErrors);
     if (
       !(
-        resultErrors.zooName ||
+        resultErrors.name ||
         resultErrors.numOfVisitors ||
         resultErrors.numOfAnimals ||
+        resultErrors.type ||
         resultErrors.entranceFee
       )
     ) {
@@ -81,11 +87,11 @@ const EditZoo = (route) => {
     <React.Fragment>
       <div className="w-full max-w-sm container my-20 mx-auto">
         <form onSubmit={onSubmit}>
-        <InputField
+          <InputField
             zoo={selectedZoo}
             handleOnChange={handleOnChange}
             errors={errors}
-            inputFieldName="zooName"
+            inputFieldName="name"
             inputFiledTitle="Zoo name"
             inputFiledPlaceholder="Enter zoo name"
           />
@@ -104,6 +110,14 @@ const EditZoo = (route) => {
             inputFieldName="numOfAnimals"
             inputFiledTitle="Num of animals"
             inputFiledPlaceholder="Enter num of animals"
+          />
+          <InputField
+            zoo={selectedZoo}
+            handleOnChange={handleOnChange}
+            errors={errors}
+            inputFieldName="type"
+            inputFiledTitle="Type"
+            inputFiledPlaceholder="Enter zoo type"
           />
           <InputField
             zoo={selectedZoo}

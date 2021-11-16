@@ -14,10 +14,10 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     zoosApi
-      .getZoos()
+      .getZoos(filters)
       .then(({ data }) => setZoos(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [filters]);
 
   function addZoo(zoo) {
     setZoos([...zoos, zoo]);
