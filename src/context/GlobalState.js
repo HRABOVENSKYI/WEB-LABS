@@ -1,23 +1,19 @@
 import React, { createContext, useEffect, useState } from "react";
 import zoosApi from "../api/api";
-import FILTER_KEYS from "./FilterKeys";
 
 export const GlobalContext = createContext({});
 
 export const GlobalProvider = ({ children }) => {
-  const [filters, setFilters] = useState({
-    [FILTER_KEYS.ORDER_BY]: { property: "id", order: "asc" },
-    [FILTER_KEYS.SEARCH_BY]: { value: "" },
-  });
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   const [zoos, setZoos] = useState([]);
 
   useEffect(() => {
     zoosApi
-      .getZoos(filters)
+      .getZoos()
       .then(({ data }) => setZoos(data))
       .catch((err) => console.log(err));
-  }, [filters]);
+  }, []);
 
   function addZoo(zoo) {
     setZoos([...zoos, zoo]);
@@ -38,20 +34,15 @@ export const GlobalProvider = ({ children }) => {
     setZoos(updatedZoos);
   }
 
-  function addFilter(key, value) {
-    const newFilter = { [key]: value };
-    setFilters({ ...filters, ...newFilter });
-  }
-
   return (
     <GlobalContext.Provider
       value={{
         zoos,
-        filters,
+        searchKeyword,
         addZoo,
         editZoo,
         removeZoo,
-        addFilter,
+        setSearchKeyword,
       }}
     >
       {children}
