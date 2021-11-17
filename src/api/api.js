@@ -5,7 +5,7 @@ const BASE_URL = "http://localhost:8080";
 
 const baseAxios = axios.create({
   baseURL: BASE_URL,
-  timeout: 5000,
+  timeout: 500000,
 });
 
 baseAxios.interceptors.request.use(
