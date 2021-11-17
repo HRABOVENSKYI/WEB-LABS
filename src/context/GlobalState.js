@@ -5,15 +5,15 @@ export const GlobalContext = createContext({});
 
 export const GlobalProvider = ({ children }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
-
+  const [filters, setFilters] = useState([]);
   const [zoos, setZoos] = useState([]);
 
   useEffect(() => {
     zoosApi
-      .getZoos()
+      .getZoos(filters)
       .then(({ data }) => setZoos(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [filters]);
 
   function addZoo(zoo) {
     setZoos([...zoos, zoo]);
@@ -39,10 +39,12 @@ export const GlobalProvider = ({ children }) => {
       value={{
         zoos,
         searchKeyword,
+        filters,
         addZoo,
         editZoo,
         removeZoo,
         setSearchKeyword,
+        setFilters,
       }}
     >
       {children}

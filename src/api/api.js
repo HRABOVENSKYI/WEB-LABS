@@ -1,4 +1,5 @@
 import axios from "axios";
+import qs from "qs";
 
 const BASE_URL = "http://localhost:8080";
 
@@ -23,7 +24,16 @@ baseAxios.interceptors.request.use(
 );
 
 const zoosApi = {
-  getZoos: () => baseAxios.get("/zoos"),
+  getZoos: (filters) =>
+    baseAxios.get("/zoos", {
+      params: {
+        filters: filters,
+      },
+      paramsSerializer: (params) => {
+        return qs.stringify(params, { arrayFormat: "repeat" });
+      },
+    }),
+  getZooTypes: () => baseAxios.get("/zoos/types"),
 };
 
 export default zoosApi;
