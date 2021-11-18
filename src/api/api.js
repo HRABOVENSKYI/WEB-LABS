@@ -1,7 +1,7 @@
 import axios from "axios";
 import qs from "qs";
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "http://localhost:8088";
 
 const baseAxios = axios.create({
   baseURL: BASE_URL,

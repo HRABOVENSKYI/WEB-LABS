@@ -7,11 +7,15 @@ export const GlobalProvider = ({ children }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [filters, setFilters] = useState([]);
   const [zoos, setZoos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     zoosApi
       .getZoos(filters)
-      .then(({ data }) => setZoos(data))
+      .then(({ data }) => {
+        setZoos(data);
+        setIsLoading(false);
+      })
       .catch((err) => console.log(err));
   }, [filters]);
 
@@ -40,6 +44,7 @@ export const GlobalProvider = ({ children }) => {
         zoos,
         searchKeyword,
         filters,
+        isLoading,
         addZoo,
         editZoo,
         removeZoo,

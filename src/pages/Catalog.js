@@ -6,9 +6,9 @@ import Loading from "../components/Loading/Loading";
 import { GlobalContext } from "../context/GlobalState";
 
 const Catalogue = () => {
-  const { zoos } = useContext(GlobalContext);
+  const { isLoading } = useContext(GlobalContext);
 
-  if (!zoos.length) {
+  if (isLoading) {
     return <Wrapper><Loading /></Wrapper>
   }
 

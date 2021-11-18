@@ -8,11 +8,11 @@ import { GlobalContext } from "../context/GlobalState";
 import Loading from "../components/Loading/Loading";
 
 const Home = () => {
-  const { zoos } = useContext(GlobalContext);
+  const { zoos, isLoading } = useContext(GlobalContext);
 
   const firstZoo = zoos[0];
 
-  if (!zoos.length) {
+  if (isLoading) {
     return (
       <Wrapper>
         <Loading />

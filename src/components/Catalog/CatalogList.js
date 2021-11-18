@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 import CatalogCard from "../Catalog/CatalogCard";
-import Loading from "../Loading/Loading";
 import NoDataText from "../NoDataText/NoDataText";
 
 const CatalogList = () => {
@@ -10,10 +9,6 @@ const CatalogList = () => {
   const filteredZoos = zoos.filter((zoo) =>
     zoo.name.toLowerCase().includes(searchKeyword)
   );
-
-  if (!zoos.length) {
-    return <Loading />
-  }
 
   return (
     <React.Fragment>
