@@ -5,11 +5,20 @@ export const GlobalContext = createContext({});
 
 export const GlobalProvider = ({ children }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
+  const [checkboxNames, setCheckboxNames] = useState([]);
   const [filters, setFilters] = useState([]);
   const [zoos, setZoos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    zoosApi
+      .getZooTypes()
+      .then(({ data }) => setCheckboxNames(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
     zoosApi
       .getZoos(filters)
       .then(({ data }) => {
@@ -45,6 +54,7 @@ export const GlobalProvider = ({ children }) => {
         searchKeyword,
         filters,
         isLoading,
+        checkboxNames,
         addZoo,
         editZoo,
         removeZoo,

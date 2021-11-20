@@ -46,7 +46,13 @@ const AddZoo = () => {
     setZoo({ ...zoo, [zooKey]: newValue });
   };
 
-  const validate = ({ name, numOfVisitors, numOfAnimals, type, entranceFee }) => {
+  const validate = ({
+    name,
+    numOfVisitors,
+    numOfAnimals,
+    type,
+    entranceFee,
+  }) => {
     const errors = {};
     const regex = /^\d*[1-9]\d*$/;
 

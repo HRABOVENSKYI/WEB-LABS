@@ -1,19 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 import Checkbox from "./Checkbox";
-import zoosApi from "../../api/api";
 
 const Filters = () => {
-  const [checkboxNames, setCheckboxNames] = useState([]);
-  
-  const { filters, setFilters } = useContext(GlobalContext);
-
-  useEffect(() => {
-    zoosApi
-      .getZooTypes()
-      .then(({ data }) => setCheckboxNames(data))
-      .catch((err) => console.log(err));
-  }, []);
+  const { checkboxNames, filters, setFilters } = useContext(GlobalContext);
 
   const handleToggle = ({ name }) => {
     if (filters.indexOf(name) === -1) {
