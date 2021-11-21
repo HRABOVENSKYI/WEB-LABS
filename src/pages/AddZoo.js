@@ -17,7 +17,7 @@ const AddZoo = () => {
     name: "",
     numOfVisitors: "",
     numOfAnimals: "",
-    type: "",
+    type: zooTypes[0],
     entranceFee: "",
   });
 

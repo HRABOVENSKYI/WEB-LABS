@@ -31,20 +31,25 @@ export const GlobalProvider = ({ children }) => {
   function addZoo(zoo) {
     zoosApi
       .createZoo(zoo)
-      .then(({ data }) => {
-        setZoos([...zoos, data]);
+      .then(({ data: createdZoo }) => {
+        setZoos([...zoos, createdZoo]);
       })
       .catch((err) => console.log(err));
   }
 
   function editZoo(zoo) {
-    const updatedZoos = zoos.map((z) => {
-      if (z.id === zoo.id) {
-        return zoo;
-      }
-      return z;
-    });
-    setZoos(updatedZoos);
+    zoosApi
+      .editZoo(zoo)
+      .then(({ data: updatedZoo }) => {
+        const updatedZoos = zoos.map((z) => {
+          if (z.id === updatedZoo.id) {
+            return zoo;
+          }
+          return z;
+        });
+        setZoos(updatedZoos);
+      })
+      .catch((err) => console.log(err));
   }
 
   function removeZoo(id) {

@@ -44,6 +44,16 @@ const zoosApi = {
       type: zoo.type,
       entranceFee: zoo.entranceFee,
     }),
+
+  editZoo: (zoo) =>
+    baseAxios.put("/zoos", {
+      id: zoo.id,
+      name: zoo.name,
+      numOfVisitors: zoo.numOfVisitors,
+      numOfAnimals: zoo.numOfAnimals,
+      type: zoo.type,
+      entranceFee: zoo.entranceFee,
+    }),
 };
 
 export default zoosApi;
