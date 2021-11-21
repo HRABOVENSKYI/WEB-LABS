@@ -6,12 +6,12 @@ import Home from "./pages/Home";
 import Header from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Cart from "./pages/Cart";
-import ZooDetails from "./pages/ZooDetails";
 import Loading from "./components/Loading/Loading";
 import Wrapper from "./components/Cards/Wrapper";
 
 const AddZoo = lazy(() => import("./pages/AddZoo"));
 const EditZoo = lazy(() => import("./pages/EditZoo"));
+const ZooDetails = lazy(() => import("./pages/ZooDetails"));
 
 function App() {
   return (
