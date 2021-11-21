@@ -54,6 +54,8 @@ const zoosApi = {
       type: zoo.type,
       entranceFee: zoo.entranceFee,
     }),
+
+  deleteZoo: (id) => baseAxios.delete(`/zoos/${id}`),
 };
 
 export default zoosApi;

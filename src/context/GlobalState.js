@@ -53,8 +53,13 @@ export const GlobalProvider = ({ children }) => {
   }
 
   function removeZoo(id) {
-    const updatedZoos = zoos.filter((zoo) => zoo.id !== id);
-    setZoos(updatedZoos);
+    zoosApi
+      .deleteZoo(id)
+      .then(() => {
+        const updatedZoos = zoos.filter((zoo) => zoo.id !== id);
+        setZoos(updatedZoos);
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
