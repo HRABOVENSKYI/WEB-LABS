@@ -33,7 +33,17 @@ const zoosApi = {
         return qs.stringify(params, { arrayFormat: "repeat" });
       },
     }),
+
   getZooTypes: () => baseAxios.get("/zoos/types"),
+
+  createZoo: (zoo) =>
+    baseAxios.post("/zoos", {
+      name: zoo.name,
+      numOfVisitors: zoo.numOfVisitors,
+      numOfAnimals: zoo.numOfAnimals,
+      type: zoo.type,
+      entranceFee: zoo.entranceFee,
+    }),
 };
 
 export default zoosApi;

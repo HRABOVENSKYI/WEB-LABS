@@ -85,47 +85,47 @@ const EditZoo = (route) => {
 
   return (
     <React.Fragment>
-      <div className="w-full max-w-sm container my-20 mx-auto">
+      <div className="w-full max-w-md container my-20 mx-auto">
         <form onSubmit={onSubmit}>
           <InputField
             zoo={selectedZoo}
             handleOnChange={handleOnChange}
             errors={errors}
             inputFieldName="name"
-            inputFiledTitle="Zoo name"
-            inputFiledPlaceholder="Enter zoo name"
+            inputFieldTitle="Zoo name"
+            inputFieldPlaceholder="Enter zoo name"
           />
           <InputField
             zoo={selectedZoo}
             handleOnChange={handleOnChange}
             errors={errors}
             inputFieldName="numOfVisitors"
-            inputFiledTitle="Num of visitors"
-            inputFiledPlaceholder="Enter num of visitors"
+            inputFieldTitle="Num of visitors"
+            inputFieldPlaceholder="Enter num of visitors"
           />
           <InputField
             zoo={selectedZoo}
             handleOnChange={handleOnChange}
             errors={errors}
             inputFieldName="numOfAnimals"
-            inputFiledTitle="Num of animals"
-            inputFiledPlaceholder="Enter num of animals"
+            inputFieldTitle="Num of animals"
+            inputFieldPlaceholder="Enter num of animals"
           />
           <InputField
             zoo={selectedZoo}
             handleOnChange={handleOnChange}
             errors={errors}
             inputFieldName="type"
-            inputFiledTitle="Type"
-            inputFiledPlaceholder="Enter zoo type"
+            inputFieldTitle="Type"
+            inputFieldPlaceholder="Enter zoo type"
           />
           <InputField
             zoo={selectedZoo}
             handleOnChange={handleOnChange}
             errors={errors}
             inputFieldName="entranceFee"
-            inputFiledTitle="Entrance fee"
-            inputFiledPlaceholder="Enter entrance fee"
+            inputFieldTitle="Entrance fee"
+            inputFieldPlaceholder="Enter entrance fee"
           />
           <SubmitButton buttonText="Edit zoo" />
           <CancelLink />
