@@ -5,7 +5,7 @@ import Wrapper from "../components/Cards/Wrapper";
 import Heading from "../components/Heading/Heading";
 import { GlobalContext } from "../context/GlobalState";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../components/actions";
+import { addToCart } from "../redux/actions";
 
 const ZooDetails = (route) => {
   let history = useHistory();

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import zoo from "../../images/nature.svg";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../actions";
+import { addToCart } from "../../redux/actions";
 
 const CatalogCard = (props) => {
   const zooId = props.zoo.id;

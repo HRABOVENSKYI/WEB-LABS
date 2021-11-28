@@ -1,7 +1,7 @@
 import React from "react";
 
 import zooImg from "../../images/nature.svg";
-import { increment, decrement, remove } from "../actions";
+import { increment, decrement, remove } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
 const CartItem = ({ zoo }) => {
