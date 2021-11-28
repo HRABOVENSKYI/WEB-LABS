@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import zoo from "../../images/nature.svg";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../actions";
 
 const CatalogCard = (props) => {
   const zooId = props.zoo.id;
+
+  const dispatch = useDispatch();
 
   return (
     <div className="w-full bg-gray-500 rounded-lg sahdow-lg p-12 flex flex-col justify-center items-center border-solid border-2 border-gray-800">
@@ -25,12 +29,18 @@ const CatalogCard = (props) => {
           Entrance fee: <b>{props.zoo.entranceFee}$</b>
         </p>
       </div>
-      <div className="flex-auto text-right pt-6">
+      <div className="flex-auto text-center pt-6">
         <Link to={`/catalog/${zooId}`} title="View more">
-          <div className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-full inline-flex items-center">
+          <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-full inline-flex items-center">
             View more
-          </div>
+          </button>
         </Link>
+        <button
+          className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-full inline-flex items-center"
+          onClick={() => dispatch(addToCart(props.zoo))}
+        >
+          Add to cart
+        </button>
       </div>
     </div>
   );

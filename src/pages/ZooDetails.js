@@ -4,9 +4,13 @@ import Button from "../components/Button/Button";
 import Wrapper from "../components/Cards/Wrapper";
 import Heading from "../components/Heading/Heading";
 import { GlobalContext } from "../context/GlobalState";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../components/actions";
 
 const ZooDetails = (route) => {
   let history = useHistory();
+
+  const dispatch = useDispatch();
 
   const { zoos } = useContext(GlobalContext);
 
@@ -30,15 +34,13 @@ const ZooDetails = (route) => {
   }, [currentZooId, zoos]);
 
   return (
-    <div>
-      <Wrapper>
-        <Heading zoo={selectedZoo} />
-        <div className="flex justify-end py-8">
-          <Button label="Go back" onClick={() => history.push("/catalog")} />
-          <Button label="Add to cart" />
-        </div>
-      </Wrapper>
-    </div>
+    <Wrapper>
+      <Heading zoo={selectedZoo} />
+      <div className="flex justify-end py-8">
+        <Button label="Go back" onClick={() => history.push("/catalog")} />
+        <Button label="Add to cart" onClick={() => dispatch(addToCart(selectedZoo))} />
+      </div>
+    </Wrapper>
   );
 };
 

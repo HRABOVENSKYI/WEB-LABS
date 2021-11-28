@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 import Button from "../Button/Button";
+import NoDataText from "../NoDataText/NoDataText";
 import Card from "./Card";
 
 const ZooList = () => {
@@ -33,7 +34,7 @@ const ZooList = () => {
           )}
         </React.Fragment>
       ) : (
-        <p className="text-center bg-gray-100 text-gray-500 py-5">No Data</p>
+        <NoDataText text="No data" />
       )}
     </React.Fragment>
   );
