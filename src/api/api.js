@@ -1,11 +1,11 @@
 import axios from "axios";
 import qs from "qs";
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "http://localhost:8088";
 
 const baseAxios = axios.create({
   baseURL: BASE_URL,
-  timeout: 500000,
+  timeout: 5000,
 });
 
 baseAxios.interceptors.request.use(
@@ -33,7 +33,29 @@ const zoosApi = {
         return qs.stringify(params, { arrayFormat: "repeat" });
       },
     }),
+
   getZooTypes: () => baseAxios.get("/zoos/types"),
+
+  createZoo: (zoo) =>
+    baseAxios.post("/zoos", {
+      name: zoo.name,
+      numOfVisitors: zoo.numOfVisitors,
+      numOfAnimals: zoo.numOfAnimals,
+      type: zoo.type,
+      entranceFee: zoo.entranceFee,
+    }),
+
+  editZoo: (zoo) =>
+    baseAxios.put("/zoos", {
+      id: zoo.id,
+      name: zoo.name,
+      numOfVisitors: zoo.numOfVisitors,
+      numOfAnimals: zoo.numOfAnimals,
+      type: zoo.type,
+      entranceFee: zoo.entranceFee,
+    }),
+
+  deleteZoo: (id) => baseAxios.delete(`/zoos/${id}`),
 };
 
 export default zoosApi;

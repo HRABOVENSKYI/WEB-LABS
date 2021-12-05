@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputField = (props) => {
+const SelectInput = (props) => {
   return (
     <div className="w-full  mb-5">
       <label
@@ -9,20 +9,19 @@ const InputField = (props) => {
       >
         {props.inputFieldTitle}
       </label>
-      <input
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:text-gray-600 focus:shadow-outline"
+      <select
+        className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:text-gray-600 focus:shadow-outline"
         value={props.zoo[props.inputFieldName]}
         onChange={(e) =>
           props.handleOnChange(props.inputFieldName, e.target.value)
         }
-        type="text"
-        placeholder={props.inputFieldPlaceholder}
-      />
-      <small className="text-red-600">
-        {props.errors[props.inputFieldName]}
-      </small>
+      >
+        {props.zooTypes.map((zt) => (
+          <option key={zt}>{zt}</option>
+        ))}
+      </select>
     </div>
   );
 };
 
-export default InputField;
+export default SelectInput;

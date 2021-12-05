@@ -1,19 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 import Checkbox from "./Checkbox";
-import zoosApi from "../../api/api";
 
 const Filters = () => {
-  const [checkboxNames, setCheckboxNames] = useState([]);
-  
-  const { filters, setFilters } = useContext(GlobalContext);
-
-  useEffect(() => {
-    zoosApi
-      .getZooTypes()
-      .then(({ data }) => setCheckboxNames(data))
-      .catch((err) => console.log(err));
-  }, []);
+  const { zooTypes, filters, setFilters } = useContext(GlobalContext);
 
   const handleToggle = ({ name }) => {
     if (filters.indexOf(name) === -1) {
@@ -27,7 +17,7 @@ const Filters = () => {
     <div className="block pb-10 flex space-x-8">
       <p className="text-xl text-gray-500 font-bold">Type filters</p>
       <div className="flex space-x-8 center">
-        {checkboxNames.map((name) => (
+        {zooTypes.map((name) => (
           <Checkbox
             key={name}
             name={name}

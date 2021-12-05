@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import CancelLink from "../components/Forms/CancelLink";
 import InputField from "../components/Forms/InputField";
+import SelectInput from "../components/Forms/SelectInput";
 import SubmitButton from "../components/Forms/SubmitButton";
 
 import { GlobalContext } from "../context/GlobalState";
@@ -10,13 +11,13 @@ import { GlobalContext } from "../context/GlobalState";
 const AddZoo = () => {
   let history = useHistory();
 
-  const { addZoo, zoos } = useContext(GlobalContext);
+  const { addZoo, zooTypes } = useContext(GlobalContext);
 
   const [zoo, setZoo] = useState({
     name: "",
     numOfVisitors: "",
     numOfAnimals: "",
-    type: "",
+    type: zooTypes[0],
     entranceFee: "",
   });
 
@@ -31,11 +32,9 @@ const AddZoo = () => {
         resultErrors.name ||
         resultErrors.numOfVisitors ||
         resultErrors.numOfAnimals ||
-        resultErrors.type ||
         resultErrors.entranceFee
       )
     ) {
-      zoo.id = zoos.length + 1;
       setZoo(zoo);
       addZoo(zoo);
       history.push("/");
@@ -46,7 +45,12 @@ const AddZoo = () => {
     setZoo({ ...zoo, [zooKey]: newValue });
   };
 
-  const validate = ({ name, numOfVisitors, numOfAnimals, type, entranceFee }) => {
+  const validate = ({
+    name,
+    numOfVisitors,
+    numOfAnimals,
+    entranceFee,
+  }) => {
     const errors = {};
     const regex = /^\d*[1-9]\d*$/;
 
@@ -66,10 +70,6 @@ const AddZoo = () => {
       errors.numOfAnimals = "Invalid num of animals";
     }
 
-    if (!type) {
-      errors.type = "Type is required!";
-    }
-
     if (!entranceFee) {
       errors.entranceFee = "Entrance fee is required!";
     } else if (!regex.test(entranceFee)) {
@@ -81,50 +81,53 @@ const AddZoo = () => {
 
   return (
     <React.Fragment>
-      <div className="w-full max-w-sm container my-20 mx-auto">
+      <div className="w-full max-w-md container my-20 mx-auto">
         <form onSubmit={onSubmit}>
           <InputField
             zoo={zoo}
             handleOnChange={handleOnChange}
             errors={errors}
             inputFieldName="name"
-            inputFiledTitle="Zoo name"
-            inputFiledPlaceholder="Enter zoo name"
+            inputFieldTitle="Zoo name"
+            inputFieldPlaceholder="Enter zoo name"
           />
-          <InputField
-            zoo={zoo}
-            handleOnChange={handleOnChange}
-            errors={errors}
-            inputFieldName="numOfVisitors"
-            inputFiledTitle="Num of visitors"
-            inputFiledPlaceholder="Enter num of visitors"
-          />
-          <InputField
-            zoo={zoo}
-            handleOnChange={handleOnChange}
-            errors={errors}
-            inputFieldName="numOfAnimals"
-            inputFiledTitle="Num of animals"
-            inputFiledPlaceholder="Enter num of animals"
-          />
-          <InputField
-            zoo={zoo}
-            handleOnChange={handleOnChange}
-            errors={errors}
-            inputFieldName="type"
-            inputFiledTitle="Type"
-            inputFiledPlaceholder="Enter zoo type"
-          />
-          <InputField
-            zoo={zoo}
-            handleOnChange={handleOnChange}
-            errors={errors}
-            inputFieldName="entranceFee"
-            inputFiledTitle="Entrance fee"
-            inputFiledPlaceholder="Enter entrance fee"
-          />
+          <div className="flex space-x-8 firm-control w-full">
+            <InputField
+              zoo={zoo}
+              handleOnChange={handleOnChange}
+              errors={errors}
+              inputFieldName="numOfVisitors"
+              inputFieldTitle="Num of visitors"
+              inputFieldPlaceholder="Enter num of visitors"
+            />
+            <InputField
+              zoo={zoo}
+              handleOnChange={handleOnChange}
+              errors={errors}
+              inputFieldName="numOfAnimals"
+              inputFieldTitle="Num of animals"
+              inputFieldPlaceholder="Enter num of animals"
+            />
+          </div>
+          <div className="flex space-x-8 firm-control w-full">
+            <SelectInput
+              zoo={zoo}
+              zooTypes={zooTypes}
+              handleOnChange={handleOnChange}
+              inputFieldName="type"
+              inputFieldTitle="Zoo type"
+            />
+            <InputField
+              zoo={zoo}
+              handleOnChange={handleOnChange}
+              errors={errors}
+              inputFieldName="entranceFee"
+              inputFieldTitle="Entrance fee"
+              inputFieldPlaceholder="Enter entrance fee"
+            />
+          </div>
           <SubmitButton buttonText="Add zoo" />
-          <CancelLink />
+          <CancelLink to="/" />
         </form>
       </div>
     </React.Fragment>

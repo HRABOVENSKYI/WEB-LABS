@@ -2,10 +2,10 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-const CancelLink = () => {
+const CancelLink = ({ to }) => {
   return (
     <div className="text-center mt-4 text-gray-500">
-      <Link to="/">Cancel</Link>
+      <Link to={to}>Cancel</Link>
     </div>
   );
 };

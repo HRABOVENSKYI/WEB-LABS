@@ -8,6 +8,8 @@ import Header from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Cart from "./pages/Cart";
 import ZooDetails from "./pages/ZooDetails";
+import Checkout from "./pages/Checkout";
+import Success from "./pages/Success";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="/cart" component={Cart} exact />
         <Route path="/add" component={AddZoo} exact />
         <Route path="/edit/:id" component={EditZoo} exact />
+        <Route path="/checkout" component={Checkout} exact />
+        <Route path="/success" component={Success} exact />
       </Switch>
       <Footer />
     </GlobalProvider>
