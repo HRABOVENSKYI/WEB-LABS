@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import CancelLink from "../components/Forms/CancelLink";
+import CustomLink from "../components/Forms/CancelLink";
 import InputField from "../components/Forms/InputField";
 import SubmitButton from "../components/Forms/SubmitButton";
 import SelectInput from "../components/Forms/SelectInput";
@@ -127,7 +127,7 @@ const EditZoo = (route) => {
             />
           </div>
           <SubmitButton buttonText="Edit zoo" />
-          <CancelLink to="/" />
+          <CustomLink to="/" name="Cancel" />
         </form>
       </div>
     </React.Fragment>

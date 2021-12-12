@@ -2,12 +2,12 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-const CancelLink = ({ to }) => {
+const CustomLink = ({ to, name }) => {
   return (
     <div className="text-center mt-4 text-gray-500">
-      <Link to={to}>Cancel</Link>
+      <Link to={to}>{name}</Link>
     </div>
   );
 };
 
-export default CancelLink;
+export default CustomLink;

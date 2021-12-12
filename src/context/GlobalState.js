@@ -9,6 +9,8 @@ export const GlobalProvider = ({ children }) => {
   const [filters, setFilters] = useState([]);
   const [zoos, setZoos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState({});
+  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     zoosApi
@@ -62,6 +64,21 @@ export const GlobalProvider = ({ children }) => {
       .catch((err) => console.log(err));
   }
 
+  function testFoo() {
+    setIsAuth(false);
+  }
+
+  async function logout() {
+    try {
+      await zoosApi.logout();
+      localStorage.removeItem("token");
+      setIsAuth(false);
+      setUser({});
+    } catch (e) {
+      console.log(e.response?.data?.message);
+    }
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -70,11 +87,17 @@ export const GlobalProvider = ({ children }) => {
         filters,
         isLoading,
         zooTypes,
+        user,
+        isAuth,
+        setUser,
+        setIsAuth,
         addZoo,
         editZoo,
         removeZoo,
         setSearchKeyword,
         setFilters,
+        logout,
+        testFoo,
       }}
     >
       {children}

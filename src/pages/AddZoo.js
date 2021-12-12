@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
-import CancelLink from "../components/Forms/CancelLink";
+import CustomLink from "../components/Forms/CancelLink";
 import InputField from "../components/Forms/InputField";
 import SelectInput from "../components/Forms/SelectInput";
 import SubmitButton from "../components/Forms/SubmitButton";
@@ -127,7 +127,7 @@ const AddZoo = () => {
             />
           </div>
           <SubmitButton buttonText="Add zoo" />
-          <CancelLink to="/" />
+          <CustomLink to="/" name="Cancel" />
         </form>
       </div>
     </React.Fragment>

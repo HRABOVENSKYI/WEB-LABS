@@ -1,7 +1,7 @@
 import { useField } from "formik";
 import React from "react";
 
-const InputField = (props) => {
+const FormikInput = (props) => {
   const [field, meta] = useField(props);
 
   return (
@@ -24,4 +24,4 @@ const InputField = (props) => {
   );
 };
 
-export default InputField;
+export default FormikInput;

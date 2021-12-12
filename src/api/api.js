@@ -8,6 +8,11 @@ const baseAxios = axios.create({
   timeout: 5000,
 });
 
+baseAxios.interceptors.request.use((config) => {
+  config.headers.Authorization = localStorage.getItem("token");
+  return config;
+});
+
 baseAxios.interceptors.request.use(
   (config) => {
     console.log(

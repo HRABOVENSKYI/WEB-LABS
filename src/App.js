@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { GlobalProvider } from "./context/GlobalState";
 import { Route, Switch } from "react-router-dom";
 import AddZoo from "./pages/AddZoo";
@@ -10,22 +11,32 @@ import Cart from "./pages/Cart";
 import ZooDetails from "./pages/ZooDetails";
 import Checkout from "./pages/Checkout";
 import Success from "./pages/Success";
+import RegistrationForm from "./pages/RegistrationForm";
+import LoginForm from "./pages/LoginForm";
 
 function App() {
+
   return (
+    // <GlobalProvider>
+    //   <Header />
+    //   <Switch>
+    //     <Route path="/" component={Home} exact />
+    //     <Route path="/catalog" component={Catalogue} exact />
+    //     <Route path="/catalog/:id" component={ZooDetails} exact />
+    //     <Route path="/cart" component={Cart} exact />
+    //     <Route path="/add" component={AddZoo} exact />
+    //     <Route path="/edit/:id" component={EditZoo} exact />
+    //     <Route path="/checkout" component={Checkout} exact />
+    //     <Route path="/success" component={Success} exact />
+    //   </Switch>
+    //   <Footer />
+    // </GlobalProvider>
+
     <GlobalProvider>
-      <Header />
       <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/catalog" component={Catalogue} exact />
-        <Route path="/catalog/:id" component={ZooDetails} exact />
-        <Route path="/cart" component={Cart} exact />
-        <Route path="/add" component={AddZoo} exact />
-        <Route path="/edit/:id" component={EditZoo} exact />
-        <Route path="/checkout" component={Checkout} exact />
-        <Route path="/success" component={Success} exact />
+        <Route path="/register" component={RegistrationForm} exact />
+        <Route path="/login" component={LoginForm} exact />
       </Switch>
-      <Footer />
     </GlobalProvider>
   );
 }

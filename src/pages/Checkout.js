@@ -1,13 +1,13 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-import CancelLink from "../components/Forms/CancelLink";
+import CustomLink from "../components/Forms/CancelLink";
 import SubmitButton from "../components/Forms/SubmitButton";
 
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
 
-import CheckoutInput from "../components/Checkout/CheckoutInput";
+import FormikInput from "../components/Checkout/FormikInput";
 
 const Checkout = () => {
   let history = useHistory();
@@ -57,24 +57,24 @@ const Checkout = () => {
           {(props) => (
             <Form>
               <div className="flex space-x-8 firm-control w-full">
-                <CheckoutInput
+                <FormikInput
                   label="First name"
                   name="firstName"
                   type="text"
                 />
-                <CheckoutInput label="Last name" name="lastName" type="text" />
+                <FormikInput label="Last name" name="lastName" type="text" />
               </div>
               <div className="flex space-x-8 firm-control w-full">
-                <CheckoutInput label="Age" name="age" type="number" />
-                <CheckoutInput
+                <FormikInput label="Age" name="age" type="number" />
+                <FormikInput
                   label="Phone number"
                   name="phoneNumber"
                   type="tel"
                 />
               </div>
-              <CheckoutInput label="Email" name="email" type="email" />
+              <FormikInput label="Email" name="email" type="email" />
               <SubmitButton buttonText="Continue" />
-              <CancelLink to="/cart" />
+              <CustomLink to="/cart" name="Cancel" />
             </Form>
           )}
         </Formik>
