@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import AddZoo from "./pages/AddZoo";
 import EditZoo from "./pages/EditZoo";
@@ -15,8 +15,9 @@ import LoginForm from "./pages/LoginForm";
 import { GlobalContext } from "./context/GlobalState";
 
 function App() {
+  const { isAuth } = useContext(GlobalContext);
 
-  if (!localStorage.getItem("token")) {
+  if (!isAuth) {
     return (
       <Switch>
         <Route path="/register" component={RegistrationForm} exact />

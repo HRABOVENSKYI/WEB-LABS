@@ -9,10 +9,12 @@ import { Form, Formik } from "formik";
 import FormikInput from "../components/Checkout/FormikInput";
 import { GlobalContext } from "../context/GlobalState";
 import authApi from "../api/auth";
+import { useHistory } from "react-router-dom";
 
-const RegistrationForm = () => {
-  const { setUser } = useContext(GlobalContext);
+const LoginForm = () => {
+  const { setUser, setIsAuth } = useContext(GlobalContext);
   const [errorMessage, setErrorMessage] = useState("");
+  let history = useHistory();
 
   const initialValues = {
     email: "",
@@ -23,9 +25,7 @@ const RegistrationForm = () => {
     email: Yup.string()
       .required("This field is required")
       .email("Email is not valid"),
-    password: Yup.string()
-      .required("This field is required")
-      .min(4, "Password must be at least 4 symbols long"),
+    password: Yup.string().required("This field is required"),
   });
 
   async function login(email, password) {
@@ -33,6 +33,7 @@ const RegistrationForm = () => {
       const response = await authApi.login(email, password);
       localStorage.setItem("token", response.data.token);
       setUser(response.data.user);
+      setIsAuth(true);
     } catch (e) {
       setErrorMessage("Invalid email or password");
       console.log(e.response?.data?.message);
@@ -41,6 +42,7 @@ const RegistrationForm = () => {
 
   const onSubmit = (values) => {
     login(values.email, values.password);
+    history.push("/");
   };
 
   return (
@@ -48,7 +50,8 @@ const RegistrationForm = () => {
       <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
         <div className="bg-white px-6 rounded shadow-md text-black w-full">
           <h1 className="text-3xl text-center">Log in</h1>
-          <div className="w-full max-w-md container my-20 mx-auto">
+          <div className="w-full max-w-md container my-10 mx-auto">
+            <div className="text-red-600 text-center mb-8">{errorMessage}</div>
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
@@ -57,7 +60,6 @@ const RegistrationForm = () => {
               <Form>
                 <FormikInput label="Email" name="email" type="email" />
                 <FormikInput label="Password" name="password" type="password" />
-                <small className="text-red-600">{errorMessage}</small>
                 <SubmitButton buttonText="Log in" />
               </Form>
             </Formik>
@@ -72,4 +74,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default LoginForm;

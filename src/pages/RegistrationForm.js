@@ -9,9 +9,11 @@ import { Form, Formik } from "formik";
 import FormikInput from "../components/Checkout/FormikInput";
 import { GlobalContext } from "../context/GlobalState";
 import authApi from "../api/auth";
+import { useHistory } from "react-router-dom";
 
 const RegistrationForm = () => {
-  const { setUser } = useContext(GlobalContext);
+  let history = useHistory();
+  const { setUser, setIsAuth } = useContext(GlobalContext);
 
   const initialValues = {
     firstName: "",
@@ -36,10 +38,15 @@ const RegistrationForm = () => {
     password: Yup.string()
       .required("This field is required")
       .min(4, "Password must be at least 4 symbols long"),
-    repeatPassword: Yup.string().when("password", {
-      is: (val) => val && val.length > 0,
-      then: Yup.string().oneOf([Yup.ref("password")], "Passwrod doesn't match"),
-    }),
+    repeatPassword: Yup.string()
+      .required("This field is required")
+      .when("password", {
+        is: (val) => val && val.length > 0,
+        then: Yup.string().oneOf(
+          [Yup.ref("password")],
+          "Passwrod doesn't match"
+        ),
+      }),
   });
 
   async function registration({ firstName, lastName, email, password }) {
@@ -52,6 +59,7 @@ const RegistrationForm = () => {
       });
       localStorage.setItem("token", response.data.token);
       setUser(response.data.user);
+      setIsAuth(true);
     } catch (e) {
       console.log(e.response?.data?.message);
     }
@@ -64,6 +72,7 @@ const RegistrationForm = () => {
       email: values.email,
       password: values.password,
     });
+    history.push("/");
   };
 
   return (
@@ -71,7 +80,7 @@ const RegistrationForm = () => {
       <div className="container max-w-md mx-auto flex-1 flex flex-col items-center justify-center px-2">
         <div className="bg-white px-6 rounded shadow-md text-black w-full">
           <h1 className="text-3xl text-center">Sign up</h1>
-          <div className="w-full max-w-md container my-20 mx-auto">
+          <div className="w-full max-w-md container my-10 mx-auto">
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}

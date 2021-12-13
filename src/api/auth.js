@@ -1,5 +1,4 @@
 import axios from "axios";
-import qs from "qs";
 
 const BASE_URL = "http://localhost:8088";
 
