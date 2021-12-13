@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const AddButton = () => {
+const AddButton = ({ to }) => {
   return (
     <div>
-      <Link to="/add">
+      <Link to={to}>
         <button className="bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-8 rounded inline-flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"

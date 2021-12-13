@@ -28,7 +28,7 @@ export const GlobalProvider = ({ children }) => {
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [filters]);
+  }, [filters, isAuth]);
 
   function addZoo(zoo) {
     zoosApi
@@ -65,9 +65,7 @@ export const GlobalProvider = ({ children }) => {
   }
 
   function checkAuth() {
-    setIsLoading(true);
     setIsAuth(true);
-    setIsLoading(false);
   }
 
   return (

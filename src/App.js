@@ -17,15 +17,18 @@ import Wrapper from "./components/Cards/Wrapper";
 import Loading from "./components/Loading/Loading";
 
 function App() {
-  const { isAuth, checkAuth, isLoading } = useContext(GlobalContext);
+  const { isAuth, checkAuth } = useContext(GlobalContext);
+  const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
+    setisLoading(true);
     if (localStorage.getItem("token")) {
       checkAuth();
     }
-  }, []);
+    setisLoading(false);
+  }, [checkAuth]);
 
-  if (isLoading) {
+  if (!isAuth && isLoading) {
     return (
       <div>
         <Header />
@@ -37,7 +40,26 @@ function App() {
     );
   }
 
-  if (!isAuth) {
+  if (isAuth && !isLoading) {
+    return (
+      <>
+        <Header />
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route path="/catalog" component={Catalogue} exact />
+          <Route path="/catalog/:id" component={ZooDetails} exact />
+          <Route path="/cart" component={Cart} exact />
+          <Route path="/add" component={AddZoo} exact />
+          <Route path="/edit/:id" component={EditZoo} exact />
+          <Route path="/checkout" component={Checkout} exact />
+          <Route path="/success" component={Success} exact />
+        </Switch>
+        <Footer />
+      </>
+    );
+  }
+
+  if (!isAuth && !isLoading) {
     return (
       <Switch>
         <Route path="/register" component={RegistrationForm} exact />
@@ -46,22 +68,7 @@ function App() {
     );
   }
 
-  return (
-    <>
-      <Header />
-      <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/catalog" component={Catalogue} exact />
-        <Route path="/catalog/:id" component={ZooDetails} exact />
-        <Route path="/cart" component={Cart} exact />
-        <Route path="/add" component={AddZoo} exact />
-        <Route path="/edit/:id" component={EditZoo} exact />
-        <Route path="/checkout" component={Checkout} exact />
-        <Route path="/success" component={Success} exact />
-      </Switch>
-      <Footer />
-    </>
-  );
+  return <div>Error</div>;
 }
 
 export default App;

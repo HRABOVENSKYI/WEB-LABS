@@ -8,7 +8,7 @@ import { GlobalContext } from "../context/GlobalState";
 import Loading from "../components/Loading/Loading";
 
 const Home = () => {
-  const { zoos } = useContext(GlobalContext);
+  const { zoos, user } = useContext(GlobalContext);
 
   const firstZoo = zoos[0];
 
@@ -25,7 +25,7 @@ const Home = () => {
       {zoos.length > 0 ? <Heading zoo={firstZoo} /> : ""}
       <div className="my-6 flex justify-between">
         <ListingTitle />
-        <AddButton />
+        <AddButton to={user.role === "ADMIN" ? "/add" : "/"} />
       </div>
       <ZooList />
     </Wrapper>
