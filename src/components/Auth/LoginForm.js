@@ -7,14 +7,13 @@ const LoginForm = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsAuth, setUser, isAuth, user, isLoading } =
+  const { setUser, user, isLoading } =
     useContext(GlobalContext);
 
   async function login(email, password) {
     try {
       const response = await authApi.login(email, password);
       localStorage.setItem("token", response.data.token);
-      setIsAuth(true);
       setUser(response.data.user);
     } catch (e) {
       console.log(e.response?.data?.message);
@@ -30,7 +29,6 @@ const LoginForm = () => {
         password,
       });
       localStorage.setItem("token", response.data.token);
-      setIsAuth(true);
       setUser(response.data.user);
     } catch (e) {
       console.log(e.response?.data?.message);

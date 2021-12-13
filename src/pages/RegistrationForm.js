@@ -11,7 +11,7 @@ import { GlobalContext } from "../context/GlobalState";
 import authApi from "../api/auth";
 
 const RegistrationForm = () => {
-  const { setIsAuth, setUser } = useContext(GlobalContext);
+  const { setUser } = useContext(GlobalContext);
 
   const initialValues = {
     firstName: "",
@@ -51,7 +51,6 @@ const RegistrationForm = () => {
         password,
       });
       localStorage.setItem("token", response.data.token);
-      setIsAuth(true);
       setUser(response.data.user);
     } catch (e) {
       console.log(e.response?.data?.message);
@@ -68,10 +67,10 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div class="bg-grey-lighter min-h-screen flex flex-col">
-      <div class="container max-w-md mx-auto flex-1 flex flex-col items-center justify-center px-2">
-        <div class="bg-white px-6 rounded shadow-md text-black w-full">
-          <h1 class="text-3xl text-center">Sign up</h1>
+    <div className="bg-grey-lighter min-h-screen flex flex-col">
+      <div className="container max-w-md mx-auto flex-1 flex flex-col items-center justify-center px-2">
+        <div className="bg-white px-6 rounded shadow-md text-black w-full">
+          <h1 className="text-3xl text-center">Sign up</h1>
           <div className="w-full max-w-md container my-20 mx-auto">
             <Formik
               initialValues={initialValues}
@@ -103,9 +102,9 @@ const RegistrationForm = () => {
                 <SubmitButton buttonText="Sign up" />
               </Form>
             </Formik>
-            <div class="text-center text-sm text-grey-dark mt-4">
+            <div className="text-center text-sm text-grey-dark mt-4">
               Already have an account?
-              <CustomLink to="/login" name="Log in" />
+              <CustomLink to="/" name="Log in" />
             </div>
           </div>
         </div>
