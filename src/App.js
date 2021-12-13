@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import AddZoo from "./pages/AddZoo";
 import EditZoo from "./pages/EditZoo";
@@ -13,9 +13,29 @@ import Success from "./pages/Success";
 import RegistrationForm from "./pages/RegistrationForm";
 import LoginForm from "./pages/LoginForm";
 import { GlobalContext } from "./context/GlobalState";
+import Wrapper from "./components/Cards/Wrapper";
+import Loading from "./components/Loading/Loading";
 
 function App() {
-  const { isAuth } = useContext(GlobalContext);
+  const { isAuth, checkAuth, isLoading } = useContext(GlobalContext);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      checkAuth();
+    }
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div>
+        <Header />
+        <Wrapper>
+          <Loading />
+        </Wrapper>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!isAuth) {
     return (

@@ -64,6 +64,12 @@ export const GlobalProvider = ({ children }) => {
       .catch((err) => console.log(err));
   }
 
+  function checkAuth() {
+    setIsLoading(true);
+    setIsAuth(true);
+    setIsLoading(false);
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -81,6 +87,7 @@ export const GlobalProvider = ({ children }) => {
         removeZoo,
         setSearchKeyword,
         setFilters,
+        checkAuth,
       }}
     >
       {children}
