@@ -31,6 +31,9 @@ const authApi = {
     baseAxios.post("/user/register", { firstName, lastName, email, password }),
 
   logout: () => baseAxios.post("/user/logout"),
+
+  validate: (token) =>
+    baseAxios.get("/user/validate-token", { headers: { token } }),
 };
 
 export default authApi;

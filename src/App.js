@@ -15,18 +15,25 @@ import LoginForm from "./pages/LoginForm";
 import { GlobalContext } from "./context/GlobalState";
 import Wrapper from "./components/Cards/Wrapper";
 import Loading from "./components/Loading/Loading";
+import authApi from "./api/auth";
 
 function App() {
-  const { isAuth, checkAuth } = useContext(GlobalContext);
+  const { isAuth, setIsAuth } = useContext(GlobalContext);
   const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
     setisLoading(true);
-    if (localStorage.getItem("token")) {
-      checkAuth();
-    }
-    setisLoading(false);
-  }, [checkAuth]);
+    authApi
+      .validate(localStorage.getItem("token"))
+      .then(({ data: isAuth }) => {
+        setIsAuth(isAuth);
+      })
+      .catch((err) => {
+        setIsAuth(false);
+        console.log(err);
+      })
+      .finally(() => setisLoading(false));
+  }, [setIsAuth]);
 
   if (!isAuth && isLoading) {
     return (

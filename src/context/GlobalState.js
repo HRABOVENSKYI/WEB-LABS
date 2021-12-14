@@ -16,8 +16,10 @@ export const GlobalProvider = ({ children }) => {
     zoosApi
       .getZooTypes()
       .then(({ data }) => setZooTypes(data))
-      .catch((err) => console.log(err));
-  }, []);
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [isAuth]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -64,10 +66,6 @@ export const GlobalProvider = ({ children }) => {
       .catch((err) => console.log(err));
   }
 
-  function checkAuth() {
-    setIsAuth(true);
-  }
-
   return (
     <GlobalContext.Provider
       value={{
@@ -85,7 +83,6 @@ export const GlobalProvider = ({ children }) => {
         removeZoo,
         setSearchKeyword,
         setFilters,
-        checkAuth,
       }}
     >
       {children}
